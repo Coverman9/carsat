@@ -20,16 +20,18 @@ class Review(db.Model):
         return {
             'id': self.id,
             'userId': self.user_id,
-            'messageId': self.message_id,
-            'reaction': self.reaction,
+            'carId': self.car_id,
+            'review': self.review,
+            'stars': self.stars,
             'user': self.user.to_dict_no_ref(),
-            'message': self.message.to_dict_no_ref()
+            'car': self.car.to_dict_no_ref()
         }
 
     def to_dict_no_ref(self):
         return {
             'id': self.id,
             'userId': self.user_id,
-            'messageId': self.message_id,
-            'reaction': self.reaction
+            'carId': self.car_id,
+            'review': self.review,
+            'stars': self.stars,
         }

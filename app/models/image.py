@@ -16,17 +16,14 @@ class Image(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'userId': self.user_id,
-            'messageId': self.message_id,
-            'reaction': self.reaction,
-            'user': self.user.to_dict_no_ref(),
-            'message': self.message.to_dict_no_ref()
+            'carId': self.car_id,
+            'image': self.image,
+            'car': self.car.to_dict_no_ref(),
         }
 
     def to_dict_no_ref(self):
         return {
             'id': self.id,
-            'userId': self.user_id,
-            'messageId': self.message_id,
-            'reaction': self.reaction
+            'carId': self.car_id,
+            'image': self.image,
         }

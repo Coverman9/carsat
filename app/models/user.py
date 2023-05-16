@@ -18,8 +18,8 @@ class User(db.Model, UserMixin):
 
     cars = db.relationship("Car", back_populates="user")
     reviews = db.relationship("Review", back_populates="user")
-    test_drive = db.relationship("Testdrive", back_populates="user")
-    wishlist = db.relationship("Wishlist", back_populates="user")
+    test_drives = db.relationship("Testdrive", back_populates="user")
+    wishlists = db.relationship("Wishlist", back_populates="user")
 
     @property
     def password(self):
@@ -33,6 +33,19 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'cars': [car.to_dict_no_ref() for car in self.cars],
+            'reviews': [review.to_dict_no_ref() for review in self.reviews],
+            'testDrives': [test_drive.to_dict_no_ref() for test_drive in self.test_drives],
+            'wishlists': [wishlist.to_dict_no_ref() for wishlist in self.wishlists]
+        }
+
+    def to_dict_no_ref(self):
         return {
             'id': self.id,
             'username': self.username,
