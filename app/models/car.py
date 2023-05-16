@@ -9,6 +9,7 @@ class Car(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     make = db.Column(db.String(50), nullable=False)
+    model = db.Column(db.String(50), nullable=False)
     type = db.Column(db.String(50), nullable=False)
     year = db.Column(db.Integer, nullable=False)
     mileage = db.Column(db.Integer, default='New')
@@ -30,6 +31,7 @@ class Car(db.Model):
             'id': self.id,
             'ownerId': self.owner_id,
             'make': self.make,
+            'model': self.model,
             'type': self.type,
             'year': self.year,
             'mileage': self.mileage,
@@ -50,6 +52,7 @@ class Car(db.Model):
            'id': self.id,
             'ownerId': self.owner_id,
             'make': self.make,
+            'model': self.model,
             'type': self.type,
             'year': self.year,
             'mileage': self.mileage,
