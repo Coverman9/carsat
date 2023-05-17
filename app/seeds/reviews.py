@@ -130,7 +130,7 @@ def seed_reviews():
         stars=5
     )
 
-    all_reviews = [review, review2, review3, review4, review5, review6,
+    all_reviews = [review, review1, review2, review3, review4, review5, review6,
                    review7, review8, review9, review10, review11, review12,
                    review13, review14, review15, review16, review17, review18,
                    review19]

@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(40), nullable=False)
     last_name = db.Column(db.String(40), nullable=False)
 
-    cars = db.relationship("Car", back_populates="user")
+    cars = db.relationship("Car", back_populates="owner")
     reviews = db.relationship("Review", back_populates="user")
     test_drives = db.relationship("Testdrive", back_populates="user")
     wishlists = db.relationship("Wishlist", back_populates="user")
