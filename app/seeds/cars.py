@@ -277,7 +277,7 @@ def seed_cars():
     print('all cars added')
 
 
-def undo_messages():
+def undo_cars():
     if environment == "production":
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.cars RESTART IDENTITY CASCADE;")
