@@ -1,0 +1,4 @@
+.all-cars-container {
+    display: flex;
+    flex-direction: row;
+}
