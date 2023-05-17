@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCarsThunk } from "../../store/cars";
 import "./Cars.css";
+import { Link } from "react-router-dom";
 
 const getCars = (cars) => {
   let carsObj = cars.reduce((acc, car) => {
@@ -12,7 +13,6 @@ const getCars = (cars) => {
     }
     return acc;
   }, {});
-  console.log(carsObj);
   return carsObj;
 };
 
@@ -32,7 +32,19 @@ const Cars = () => {
         return (
           <>
             <h3>{type.toUpperCase()}</h3>
-            <div>{cars[type].map(car => `${car.make} ${car.model} `) }</div>
+            <div>
+              {cars[type].map((car) => {
+                return (
+                  <>
+                    <Link to={`/cars/${car.id}`}>
+                      <div>
+                        {car.make} {car.model}
+                      </div>
+                    </Link>
+                  </>
+                );
+              })}
+            </div>
           </>
         );
       })}

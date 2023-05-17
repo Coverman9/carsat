@@ -38,6 +38,11 @@ export const getAllCarsThunk = () => async (dispatch) => {
   await dispatch(allCarsAction(cars));
 };
 
+export const getCarDetailThunk = (carId) => async (dispatch) => {
+  const res = await fetch(`/api/cars/${carId}`);
+  const car = await res.json();
+  await dispatch(oneCarAction(car));
+};
 ///------------------REDUCERS--------------------------
 
 const initialState = {};
@@ -46,12 +51,14 @@ const cars = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
     case ALL_CARS:
-      action.cars.cars.forEach((car) => newState[car.id] = car);
+      action.cars.cars.forEach((car) => (newState[car.id] = car));
+      return newState;
+    case ONE_CAR:
+      newState[action.car.car.id] = action.car.car;
       return newState;
     default:
       return state;
   }
-}
+};
 
-
-export default cars
+export default cars;
