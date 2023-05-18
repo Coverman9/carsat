@@ -1,4 +1,32 @@
 .all-cars-container {
     display: flex;
     flex-direction: row;
+
+}
+.all-cars-container a {
+    text-decoration: none;
+}
+.car-image-info-div {
+    width: 550px;
+    height: 350px;
+    margin-left: 20px;
+    box-shadow: inset 0px 44px 45px black;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.all-cars-container img {
+    width: 550px;
+    height: 350px;
+    position: absolute;
+    z-index: -2;
+}
+
+.all-cars-make-model {
+    color: whitesmoke;
+    position: relative;
+    font-size: 30px;
+
+}
+.car-price{
+    font-size: 20px;
 }

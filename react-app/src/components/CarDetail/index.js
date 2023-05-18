@@ -18,7 +18,7 @@ const CarDetail = () => {
   return (
     <>
       <h1>Car Detail</h1>
-      <h2>{car?.make} {car?.model}</h2>
+      <h2>{car?.year} {car?.make} {car?.model}</h2>
     </>
   );
 };

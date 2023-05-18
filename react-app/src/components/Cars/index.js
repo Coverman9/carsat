@@ -32,13 +32,19 @@ const Cars = () => {
         return (
           <>
             <h3>{type.toUpperCase()}</h3>
-            <div>
+            <div className="all-cars-container">
               {cars[type].map((car) => {
                 return (
                   <>
                     <Link to={`/cars/${car.id}`}>
-                      <div>
-                        {car.make} {car.model}
+                      <div className="car-image-info-div">
+                        <img src="https://carloson.ru/uploads/images/cars/62/5517804b683b93f62d6c03612223a1bd-740x507.jpg" />
+                        <div className="all-cars-make-model">
+                          <p>
+                            {car.make} {car.model}
+                          </p>
+                          <p className="car-price">${car.price}</p>
+                        </div>
                       </div>
                     </Link>
                   </>
