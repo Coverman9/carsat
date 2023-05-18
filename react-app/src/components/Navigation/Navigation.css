@@ -5,3 +5,9 @@
 .hidden {
   display: none;
 }
+
+.main-navbar{
+  background-color: rgb(75, 76, 76);
+  margin: 0;
+  color: whitesmoke;
+}

@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import Car, User, db
 from ..forms import CarForm
 from .auth_routes import validation_errors_to_error_messages
+from datetime import datetime
 
 car_routes = Blueprint('cars', __name__)
 
@@ -48,11 +49,13 @@ def create_car():
             price=form.data['price'],
             color=form.data['color'],
             car_description=form.data['car_description'],
-            owner=current_user
+            owner=current_user,
+            created_at = datetime.now()
         )
+        print("CAR", car)
         db.session.add(car)
         db.session.commit()
-        return {'car': car.to_dict()}
+        return car.to_dict()
 
     # or 422
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400

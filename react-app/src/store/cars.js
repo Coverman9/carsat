@@ -43,6 +43,36 @@ export const getCarDetailThunk = (carId) => async (dispatch) => {
   const car = await res.json();
   await dispatch(oneCarAction(car));
 };
+
+export const CreateCarThunk = (car) => async (dispatch) => {
+  const { make, model, type, year, mileage, price, color, car_description } =
+    car;
+  const res = await fetch("/api/cars", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      make,
+      model,
+      type,
+      year,
+      mileage,
+      price,
+      color,
+      car_description
+    }),
+  });
+
+  if (res.ok) {
+    const newCar = await res.json();
+    dispatch(createCarAction(newCar));
+    return newCar;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
 ///------------------REDUCERS--------------------------
 
 const initialState = {};
@@ -56,6 +86,10 @@ const cars = (state = initialState, action) => {
     case ONE_CAR:
       newState[action.car.car.id] = action.car.car;
       return newState;
+    case CREATE_CAR:
+      newState = {...state}
+      newState[action.car.id] = action.car
+      return newState
     default:
       return state;
   }

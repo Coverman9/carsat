@@ -31,7 +31,7 @@ const Cars = () => {
       {Object.keys(cars).map((type) => {
         return (
           <>
-            <h3>{type.toUpperCase()}</h3>
+            <h3>{type ? type.toUpperCase() : "OTHERS"}</h3>
             <div className="all-cars-container">
               {cars[type].map((car) => {
                 return (

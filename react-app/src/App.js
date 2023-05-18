@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Cars from "./components/Cars";
 import CarDetail from "./components/CarDetail";
+import AddCar from "./components/AddCar";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route exact path="/cars">
             <Cars />
+          </Route>
+          <Route exact path="/cars/new">
+            <AddCar />
           </Route>
           <Route exact path="/cars/:carId">
             <CarDetail/>

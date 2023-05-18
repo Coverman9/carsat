@@ -13,11 +13,11 @@ def car_description_check(form, field):
         raise ValidationError('Description can not be more than 400 characters.')
 
 class CarForm(FlaskForm):
-    make = StringField('make', validators=[car_make_check])
+    make = StringField('make')
     model = StringField('model')
     type = StringField('type')
     year = IntegerField('year')
     mileage = IntegerField('mileage')
     price = IntegerField('price')
     color = StringField('color')
-    car_description = TextAreaField('car_description', validators=[car_description_check])
+    car_description = TextAreaField('car_description')

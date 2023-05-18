@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 const CarDetail = () => {
   const { carId } = useParams();
   const car = useSelector((state) => state.cars[carId]);
-  console.log("SGEIN", car)
 
   const dispatch = useDispatch();
 
