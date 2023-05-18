@@ -30,6 +30,9 @@ function Navigation({ isLoaded }) {
                   <Link to="/cars/new">
                     <button>Add a Car</button>
                   </Link>
+				  <Link to={`/profile/${sessionUser.id}`}>
+				  	<button>Profile</button>
+				  </Link>
                 </>
               )}
             </div>

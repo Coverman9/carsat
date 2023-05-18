@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Cars from "./components/Cars";
 import CarDetail from "./components/CarDetail";
 import AddCar from "./components/AddCar";
+import Profile from "./components/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path="/cars/:carId">
             <CarDetail/>
+          </Route>
+          <Route exact path="/profile/:profileId">
+            <Profile />
           </Route>
         </Switch>
       )}
