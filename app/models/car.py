@@ -20,10 +20,10 @@ class Car(db.Model):
 
 
     owner = db.relationship("User", back_populates="cars")
-    reviews = db.relationship("Review", back_populates="car")
-    images = db.relationship("Image", back_populates="car")
-    wishlists = db.relationship("Wishlist", back_populates="car")
-    test_drives = db.relationship("Testdrive", back_populates="car")
+    reviews = db.relationship("Review", back_populates="car", cascade="all, delete")
+    images = db.relationship("Image", back_populates="car", cascade="all, delete")
+    wishlists = db.relationship("Wishlist", back_populates="car", cascade="all, delete")
+    test_drives = db.relationship("Testdrive", back_populates="car", cascade="all, delete")
 
     def to_dict(self):
         realOwner = self.owner.to_dict_no_ref() if self.owner is not None else None

@@ -19,9 +19,9 @@ const createCarAction = (car) => ({
   car,
 });
 
-const updateCarAction = (carId) => ({
+const updateCarAction = (car) => ({
   type: UPDATE_CAR,
-  carId,
+  car,
 });
 
 const deleteCarAction = (carId) => ({
@@ -44,7 +44,7 @@ export const getCarDetailThunk = (carId) => async (dispatch) => {
   await dispatch(oneCarAction(car));
 };
 
-export const CreateCarThunk = (car) => async (dispatch) => {
+export const createCarThunk = (car) => async (dispatch) => {
   const { make, model, type, year, mileage, price, color, car_description } =
     car;
   const res = await fetch("/api/cars", {
@@ -60,7 +60,7 @@ export const CreateCarThunk = (car) => async (dispatch) => {
       mileage,
       price,
       color,
-      car_description
+      car_description,
     }),
   });
 
@@ -68,6 +68,58 @@ export const CreateCarThunk = (car) => async (dispatch) => {
     const newCar = await res.json();
     dispatch(createCarAction(newCar));
     return newCar;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
+
+export const updateCarThunk = (car) => async (dispatch) => {
+  const {
+    make,
+    model,
+    type,
+    year,
+    mileage,
+    price,
+    color,
+    car_description,
+    carId,
+  } = car;
+  const res = await fetch(`/api/cars/${carId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      make,
+      model,
+      type,
+      year,
+      mileage,
+      price,
+      color,
+      car_description,
+    }),
+  });
+
+  if (res.ok) {
+    const newCar = await res.json();
+    dispatch(updateCarAction(newCar));
+    return newCar;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
+
+export const deleteCarThunk = (carId) => async (dispatch) => {
+  const res = await fetch(`/api/cars/${carId}`, {
+    method: "DELETE",
+  });
+
+  if (res.ok) {
+    dispatch(deleteCarAction(carId));
   } else {
     const errors = await res.json();
     return errors;
@@ -87,8 +139,15 @@ const cars = (state = initialState, action) => {
       newState[action.car.car.id] = action.car.car;
       return newState;
     case CREATE_CAR:
-      newState = {...state}
-      newState[action.car.id] = action.car
+      newState = { ...state };
+      newState[action.car.id] = action.car;
+      return newState;
+    case UPDATE_CAR:
+      console.log(state);
+      return { ...state, [action.car.id]: action.car };
+    case DELETE_CAR:
+      newState = { ...state };
+      delete newState[action.carId]
       return newState
     default:
       return state;

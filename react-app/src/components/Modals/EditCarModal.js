@@ -1,51 +1,44 @@
-import { useState } from "react";
-import "./AddCar.css";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { createCarThunk } from "../../store/cars";
+import "./Modals.css"
+import { useState } from "react";
+import { updateCarThunk } from "../../store/cars";
+import { useModal } from "../../context/Modal";
 
-const AddCar = () => {
-  const [make, setMake] = useState("");
-  const [model, setModel] = useState("");
-  const [type, setType] = useState("");
-  const [year, setYear] = useState(0);
-  const [mileage, setMileage] = useState(0);
-  const [price, setPrice] = useState(0);
-  const [color, setColor] = useState("");
-  const [carDescription, setCarDescription] = useState("");
-  const [errors, setErrors] = useState([]);
+const EditCarModal = ({car}) => {
+    const [make, setMake] = useState(car.make);
+    const [model, setModel] = useState(car.model);
+    const [type, setType] = useState(car.type);
+    const [year, setYear] = useState(car.year);
+    const [mileage, setMileage] = useState(car.mileage);
+    const [price, setPrice] = useState(car.price);
+    const [color, setColor] = useState(car.color);
+    const [carDescription, setCarDescription] = useState(car.carDescription);
+    const [errors, setErrors] = useState([]);
 
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const types = ["business", "cabrio", "coupe", "sportcar", "SUV", "van"];
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(
-      createCarThunk({
-        make,
-        model,
-        type,
-        year,
-        mileage,
-        price,
-        color,
-        car_description: carDescription,
-      })
-    )
-      .then((newCar) => history.push(`/cars/${newCar.id}`))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          setErrors(data.errors);
-        }
-      });
-  };
-  return (
-    <>
-      <div>
+    const dispatch = useDispatch()
+    const { closeModal } = useModal()
+    const types = ["business", "cabrio", "coupe", "sportcar", "SUV", "van"];
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        await dispatch(updateCarThunk({
+            make,
+            model,
+            type,
+            year,
+            mileage,
+            price,
+            color,
+            car_description: carDescription,
+            carId: car.id
+        })).then(() => closeModal())
+    }
+
+    return (
+        <>
+           <div>
         <form onSubmit={handleSubmit}>
-          <h2>Adding new Car</h2>
+          <h2>Update Car</h2>
           <ul>
             {errors.map((error, idx) => (
               <li className="form-errors" key={idx}>
@@ -155,8 +148,9 @@ const AddCar = () => {
           </div>
         </form>
       </div>
-    </>
-  );
-};
+        </>
+    )
+}
 
-export default AddCar;
+
+export default EditCarModal

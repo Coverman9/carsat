@@ -88,7 +88,7 @@ def update_car(id):
         car_to_update.car_description = form.data['car_description']
 
         db.session.commit()
-        return {'car': car_to_update.to_dict()}
+        return car_to_update.to_dict()
 
     # or 422
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
@@ -97,12 +97,12 @@ def update_car(id):
 
 @car_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def delete_ar(id):
+def delete_car(id):
     """
     This route deletes the car specified by id
     if the logged-in user is the owner
     """
-
+    print("DOHODIW")
     car_to_delete = Car.query.get(id)
 
     if current_user.id != car_to_delete.owner_id:
