@@ -10,25 +10,25 @@ review_routes = Blueprint('reviews', __name__)
 
 @review_routes.route('car/<int:id>')
 @login_required
-def get_all_reviews_of_current_car(car_id):
+def get_all_reviews_of_current_car(id):
     """
     This route gets all reviews that are belongs to car
     """
-    reviews = Review.query.filter(Car.id == car_id)
+    reviews = Review.query.filter(Review.car_id == id).all()
 
     return {'reviews': [review.to_dict() for review in reviews]}
 
 
 @review_routes.route('user/<int:id>')
 @login_required
-def get_all_reviews_of_current_user(user_id):
+def get_all_reviews_of_current_user(id):
     """
     This route get all reviews that are belongs to user
     """
-    reviews = Review.query.filter(User.id == user_id)
-    if reviews:
-        return {'review': reviews.to_dict()}
-    return {'errors': ["Not Found"]}, 404
+    reviews = Review.query.filter(Review.user_id == id).all()
+
+    return {'reviews': [review.to_dict() for review in reviews]}
+
 
 
 @review_routes.route('', methods=['POST'])

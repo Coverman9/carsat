@@ -1,8 +1,8 @@
 const ALL_REVIEWS_OF_CAR = "reviews/ALL_REVIEWS_OF_CAR";
 const ALL_REVIEWS_OF_USER = "reviews/ALL_REVIEWS_OF_USER";
 const CREATE_REVIEW = "reviews/CREATE_REVIEW";
-const UPDATE_REVIEW = "cars/UPDATE_REVIEW";
-const DELETE_REVIEW = "cars/DELETE_REVIEW";
+const UPDATE_REVIEW = "reviews/UPDATE_REVIEW";
+const DELETE_REVIEW = "reviews/DELETE_REVIEW";
 
 const allCarReviewsAction = (reviews) => ({
   type: ALL_REVIEWS_OF_CAR,
@@ -32,6 +32,7 @@ const deleteReviewAction = (reviewId) => ({
 ///-------------------THUNK-------------------------
 
 export const getAllCarReviewsThunk = (carId) => async (dispatch) => {
+
   const res = await fetch(`/api/reviews/car/${carId}`);
   const reviews = await res.json();
 
@@ -111,11 +112,11 @@ const reviews = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
     case ALL_REVIEWS_OF_CAR:
-      action.cars.cars.forEach((car) => (newState[car.id] = car));
+      action.reviews.reviews.forEach((review) => (newState[review.id] = review));
       return newState;
-    // case ALL_REVIEWS_OF_USER:
-    //   action.cars.cars.forEach((car) => (newState[car.id] = car));
-    //   return newState;
+    case ALL_REVIEWS_OF_USER:
+      action.reviews.reviews.forEach((review) => (newState[review.id] = review));
+      return newState;
     // case CREATE_REVIEW:
     //   newState = { ...state };
     //   newState[action.car.id] = action.car;

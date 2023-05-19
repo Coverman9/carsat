@@ -4,12 +4,15 @@ import EditCarModal from "../Modals/EditCarModal";
 import DeleteCarModal from "../Modals/DeleteCarModal";
 import { useEffect } from "react";
 import { getAllCarsThunk } from "../../store/cars";
+import { getAllUserReviewsThunk } from "../../store/reviews";
 
 const Profile = () => {
-  const test = useSelector(state => state.cars)
   const sessionUser = useSelector((state) => state.session.user);
-  const testArr = Object.values(test)
-  const userCars = testArr.filter(el => el.ownerId === sessionUser.id)
+  const cars = useSelector(state => state.cars)
+  const carsArr = Object.values(cars)
+  const userCars = carsArr.filter(el => el.ownerId === sessionUser.id)
+
+  const reviews = useSelector(state => state.reviews)
   const userReviews = Object.values(sessionUser.reviews)
   const userWishlists = Object.values(sessionUser.wishlists)
   const userTestDrives = Object.values(sessionUser.testDrives)
@@ -18,6 +21,10 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getAllCarsThunk());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllUserReviewsThunk(sessionUser.id))
+  }, [dispatch])
 
   return (
     <>
