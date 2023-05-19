@@ -8,7 +8,7 @@ from datetime import datetime
 review_routes = Blueprint('reviews', __name__)
 
 
-@review_routes.route('')
+@review_routes.route('car/<int:id>')
 @login_required
 def get_all_reviews_of_current_car(car_id):
     """
@@ -19,7 +19,7 @@ def get_all_reviews_of_current_car(car_id):
     return {'reviews': [review.to_dict() for review in reviews]}
 
 
-@review_routes.route('/<int:id>')
+@review_routes.route('user/<int:id>')
 @login_required
 def get_all_reviews_of_current_user(user_id):
     """
