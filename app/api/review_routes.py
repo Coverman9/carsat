@@ -102,4 +102,4 @@ def delete_review(id):
 
     db.session.commit()
 
-    return {'message': f"Successfully deleted car {review_to_delete}"}
+    return {'message': f"Successfully deleted review {review_to_delete}"}
