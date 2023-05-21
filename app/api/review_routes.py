@@ -31,13 +31,12 @@ def get_all_reviews_of_current_user(id):
 
 
 
-@review_routes.route('', methods=['POST'])
+@review_routes.route('/<int:carId>', methods=['POST'])
 @login_required
-def create_review(car_id):
+def create_review(carId):
     """
     This route creates a review for the logged-in user
     """
-    car_to_post_in = Car.query.get(car_id)
 
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -45,9 +44,9 @@ def create_review(car_id):
 
         new_review = Review(
             user = current_user,
-            car = car_to_post_in,
-            review = form.data('review'),
-            stars = form.data('stars')
+            car_id = carId,
+            review = form.data['review'],
+            stars = form.data['stars']
         )
         db.session.add(new_review)
         db.session.commit()

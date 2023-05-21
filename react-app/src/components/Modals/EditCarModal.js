@@ -1,42 +1,43 @@
 import { useDispatch } from "react-redux";
-import "./Modals.css"
+import "./Modals.css";
 import { useState } from "react";
 import { updateCarThunk } from "../../store/cars";
 import { useModal } from "../../context/Modal";
 
-const EditCarModal = ({car}) => {
-    const [make, setMake] = useState(car.make);
-    const [model, setModel] = useState(car.model);
-    const [type, setType] = useState(car.type);
-    const [year, setYear] = useState(car.year);
-    const [mileage, setMileage] = useState(car.mileage);
-    const [price, setPrice] = useState(car.price);
-    const [color, setColor] = useState(car.color);
-    const [carDescription, setCarDescription] = useState(car.carDescription);
-    const [errors, setErrors] = useState([]);
+const EditCarModal = ({ car }) => {
+  const [make, setMake] = useState(car.make);
+  const [model, setModel] = useState(car.model);
+  const [type, setType] = useState(car.type);
+  const [year, setYear] = useState(car.year);
+  const [mileage, setMileage] = useState(car.mileage);
+  const [price, setPrice] = useState(car.price);
+  const [color, setColor] = useState(car.color);
+  const [carDescription, setCarDescription] = useState(car.carDescription);
+  const [errors, setErrors] = useState([]);
 
+  const dispatch = useDispatch();
+  const { closeModal } = useModal();
+  const types = ["business", "cabrio", "coupe", "sportcar", "SUV", "van"];
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await dispatch(
+      updateCarThunk({
+        make,
+        model,
+        type,
+        year,
+        mileage,
+        price,
+        color,
+        car_description: carDescription,
+        carId: car.id,
+      })
+    ).then(() => closeModal());
+  };
 
-    const dispatch = useDispatch()
-    const { closeModal } = useModal()
-    const types = ["business", "cabrio", "coupe", "sportcar", "SUV", "van"];
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        await dispatch(updateCarThunk({
-            make,
-            model,
-            type,
-            year,
-            mileage,
-            price,
-            color,
-            car_description: carDescription,
-            carId: car.id
-        })).then(() => closeModal())
-    }
-
-    return (
-        <>
-           <div>
+  return (
+    <>
+      <div>
         <form onSubmit={handleSubmit}>
           <h2>Update Car</h2>
           <ul>
@@ -148,9 +149,8 @@ const EditCarModal = ({car}) => {
           </div>
         </form>
       </div>
-        </>
-    )
-}
+    </>
+  );
+};
 
-
-export default EditCarModal
+export default EditCarModal;

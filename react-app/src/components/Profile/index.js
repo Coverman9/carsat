@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import EditCarModal from "../Modals/EditCarModal";
 import DeleteCarModal from "../Modals/DeleteCarModal";
+import EditReviewModal from "../Modals/EditReviewModal";
+import DeleteReviewModal from "../Modals/DeleteReviewModal";
 import { useEffect } from "react";
 import { getAllCarsThunk } from "../../store/cars";
 import { getAllUserReviewsThunk } from "../../store/reviews";
@@ -13,7 +15,8 @@ const Profile = () => {
   const userCars = carsArr.filter(el => el.ownerId === sessionUser.id)
 
   const reviews = useSelector(state => state.reviews)
-  const userReviews = Object.values(sessionUser.reviews)
+  const userReviews = Object.values(reviews)
+
   const userWishlists = Object.values(sessionUser.wishlists)
   const userTestDrives = Object.values(sessionUser.testDrives)
 
@@ -59,11 +62,11 @@ const Profile = () => {
               </p>
               <OpenModalButton
                 buttonText={"Update"}
-                modalComponent={<EditCarModal />}
+                modalComponent={<EditReviewModal _review={review}/>}
               />
               <OpenModalButton
                 buttonText={"Delete"}
-                modalComponent={<DeleteCarModal />}
+                modalComponent={<DeleteReviewModal review={review}/>}
               />
             </>
           );
