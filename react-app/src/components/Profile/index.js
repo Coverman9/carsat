@@ -2,22 +2,36 @@ import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import EditCarModal from "../Modals/EditCarModal";
 import DeleteCarModal from "../Modals/DeleteCarModal";
+import EditReviewModal from "../Modals/EditReviewModal";
+import DeleteReviewModal from "../Modals/DeleteReviewModal";
 import { useEffect } from "react";
 import { getAllCarsThunk } from "../../store/cars";
+import { getAllUserReviewsThunk } from "../../store/reviews";
+import { getAllUserWishlistsThunk } from "../../store/wishlists";
 
 const Profile = () => {
-  const test = useSelector(state => state.cars)
   const sessionUser = useSelector((state) => state.session.user);
-  const testArr = Object.values(test)
-  const userCars = testArr.filter(el => el.ownerId === sessionUser.id)
-  const userReviews = Object.values(sessionUser.reviews)
-  const userWishlists = Object.values(sessionUser.wishlists)
+  const cars = useSelector(state => state.cars)
+  const carsArr = Object.values(cars)
+  const userCars = carsArr.filter(el => el.ownerId === sessionUser.id)
+
+  const reviews = useSelector(state => state.reviews)
+  const userReviews = Object.values(reviews)
+
+  const wishlists = useSelector(state => state.wishlists)
+  const userWishlists = Object.values(wishlists)
+
   const userTestDrives = Object.values(sessionUser.testDrives)
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCarsThunk());
+    dispatch(getAllUserReviewsThunk(sessionUser.id))
+    dispatch(getAllUserWishlistsThunk(sessionUser.id))
   }, [dispatch]);
+
+  useEffect(() => {
+  }, [dispatch])
 
   return (
     <>
@@ -52,11 +66,11 @@ const Profile = () => {
               </p>
               <OpenModalButton
                 buttonText={"Update"}
-                modalComponent={<EditCarModal />}
+                modalComponent={<EditReviewModal _review={review}/>}
               />
               <OpenModalButton
                 buttonText={"Delete"}
-                modalComponent={<DeleteCarModal />}
+                modalComponent={<DeleteReviewModal review={review}/>}
               />
             </>
           );
@@ -68,14 +82,10 @@ const Profile = () => {
           return (
             <>
               <p>
-                {wishlist.id}
+                {wishlist.car.make} {wishlist.car.model}
               </p>
               <OpenModalButton
-                buttonText={"Update"}
-                modalComponent={<EditCarModal />}
-              />
-              <OpenModalButton
-                buttonText={"Delete"}
+                buttonText={"Remove"}
                 modalComponent={<DeleteCarModal />}
               />
             </>
