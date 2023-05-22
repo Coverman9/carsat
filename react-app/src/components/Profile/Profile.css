@@ -2,3 +2,7 @@
     width: 300px;
     border-radius: 20px;
 }
+
+.profile-your-cars {
+    display: flex;
+}

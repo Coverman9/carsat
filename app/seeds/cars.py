@@ -108,8 +108,8 @@ def seed_cars():
         year=2018,
         mileage=123000,
         price=24500,
-        color='yellow',
-        car_description='Black Chevrolet Camaro',
+        color='gray',
+        car_description='Gray BMW 4 series',
         created_at=datetime.now()
     )
     car10 = Car(

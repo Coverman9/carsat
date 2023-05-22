@@ -4,6 +4,7 @@ from .cars import seed_cars, undo_cars
 from .reviews import seed_reviews, undo_reviews
 from .test_drives import seed_testdrives, undo_testdrives
 from .wishlists import seed_wishlists, undo_wishlists
+from .images import seed_images, undo_images
 
 from app.models.db import db, environment, SCHEMA
 
@@ -23,11 +24,13 @@ def seed():
         undo_wishlists()
         undo_reviews()
         undo_testdrives()
+        undo_images()
         undo_cars()
         undo_users()
 
     seed_users()
     seed_cars()
+    seed_images()
     seed_reviews()
     seed_testdrives()
     seed_wishlists()
@@ -40,6 +43,7 @@ def undo():
     undo_wishlists()
     undo_reviews()
     undo_testdrives()
+    undo_images()
     undo_cars()
     undo_users()
     # Add other undo functions here

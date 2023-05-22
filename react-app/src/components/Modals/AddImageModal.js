@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useModal } from "../../context/Modal";
 
 const AddImageModal = ({ car }) => {
   const sessionUser = useSelector((state) => state.session.user);
   const history = useHistory(); // so that we can redirect after the image upload is successful
   const [image, setImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
+  const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
+    console.log(image);
     formData.append("image", image);
 
     // aws uploads can be a bit slow—displaying
@@ -24,6 +27,7 @@ const AddImageModal = ({ car }) => {
     if (res.ok) {
       await res.json();
       setImageLoading(false);
+      closeModal();
       history.push(`/profile/${sessionUser.id}`);
     } else {
       setImageLoading(false);

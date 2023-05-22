@@ -52,10 +52,12 @@ const Profile = () => {
           {userCars.map((car) => {
             return (
               <>
-                <img src={car?.images?.[0]?.image} />
-                <p>
-                  {car.make} {car.model}
-                </p>
+                <div className="profile-your-cars">
+                  <img src={car?.images?.[0]?.image} />
+                  <p>
+                    {car.make} {car.model}
+                  </p>
+                </div>
                 <OpenModalButton
                   buttonText={"Add image"}
                   modalComponent={<AddImageModal car={car} />}

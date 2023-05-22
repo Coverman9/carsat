@@ -38,7 +38,7 @@ const Cars = () => {
                   <>
                     <Link to={`/cars/${car.id}`}>
                       <div className="car-image-info-div">
-                        <img src="https://carloson.ru/uploads/images/cars/62/5517804b683b93f62d6c03612223a1bd-740x507.jpg" />
+                        <img src={car.images[0].image} />
                         <div className="all-cars-make-model">
                           <p>
                             {car.make} {car.model}
