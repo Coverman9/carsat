@@ -14,10 +14,10 @@ import {
   createTestdriveThunk,
   getAllCarTestdrivesThunk,
 } from "../../store/testdrives";
+import "./CarDetail.css";
 
 const CarDetail = () => {
   const [date, setDate] = useState();
-  console.log(date);
   let year = new Date().getFullYear().toString();
   let month = new Date().getMonth();
   let day = new Date().getDate().toString();
@@ -54,7 +54,7 @@ const CarDetail = () => {
   };
 
   const formSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     await dispatch(
       createTestdriveThunk({
         testdrive_date: date,
@@ -62,12 +62,28 @@ const CarDetail = () => {
       })
     );
   };
+  const otherImages = car?.images.slice(1)
+  console.log(otherImages)
   return (
     <>
       <h1>Car Detail</h1>
       <h2>
         {car?.year} {car?.make} {car?.model}
       </h2>
+      <div className="car-detail-image-container">
+        <div className="car-detail-main-image">
+          <img src={car?.images[0]?.image} />
+        </div>
+        <div className="car-detail-other-images">
+          {otherImages?.map((car) => {
+            return (
+              <>
+                <img src={car.image} />
+              </>
+            );
+          })}
+        </div>
+      </div>
       <h2>Car Reviews:</h2>
       <div>
         <OpenModalButton

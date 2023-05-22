@@ -91,6 +91,22 @@ def seed_images():
         car_id=22,
         image='https://carsat-aws.s3.us-east-2.amazonaws.com/d65f4855c80d4bad8156e65cbf17a7fe.jpeg',
     )
+    car1_image1 = Image(
+        car_id=1,
+        image='https://carsat-aws.s3.us-east-2.amazonaws.com/d89b480254c4410787bd280606d759f2.jpeg'
+    )
+    car1_image2 = Image(
+        car_id=1,
+        image='https://carsat-aws.s3.us-east-2.amazonaws.com/9c30e864e2434eec8b9d1a473e58d5ac.jpeg'
+    )
+    car1_image3 = Image(
+        car_id=1,
+        image='https://carsat-aws.s3.us-east-2.amazonaws.com/368f606ed2a646a094ee6fadcfac9275.jpeg'
+    )
+    car1_image4 = Image(
+        car_id=1,
+        image='https://carsat-aws.s3.us-east-2.amazonaws.com/155c5801d0b342b1b75f2a85fa3cdf39.jpeg'
+    )
 
     all_images = [image1, image2, image3, image4, image5, image6,
                    image7, image8, image9, image10, image11, image12,

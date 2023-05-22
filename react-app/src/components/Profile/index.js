@@ -14,6 +14,7 @@ import EditTestdriveModal from "../Modals/EditTestdriveModal";
 import CancelTestdriveModal from "../Modals/CancelTestDriveModal";
 import AddImageModal from "../Modals/AddImageModal";
 import "./Profile.css";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -53,7 +54,9 @@ const Profile = () => {
             return (
               <>
                 <div className="profile-your-cars">
-                  <img src={car?.images?.[0]?.image} />
+                  <Link to={`/cars/${car.id}`}>
+                    <img src={car?.images?.[0]?.image} />
+                  </Link>
                   <p>
                     {car.make} {car.model}
                   </p>

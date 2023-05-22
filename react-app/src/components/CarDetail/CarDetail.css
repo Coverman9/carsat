@@ -1,0 +1,17 @@
+.car-detail-image-container {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5px;
+    height: 500px;
+}
+
+.car-detail-image-container img {
+    width: 100%;
+}
+
+.car-detail-other-images{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+}
