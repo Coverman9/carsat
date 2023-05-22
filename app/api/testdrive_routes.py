@@ -5,7 +5,7 @@ from ..forms import TestdriveForm
 from .auth_routes import validation_errors_to_error_messages
 from datetime import datetime
 
-testdrive_routes = Blueprint('reviews', __name__)
+testdrive_routes = Blueprint('testdrives', __name__)
 
 
 @testdrive_routes.route('car/<int:id>')

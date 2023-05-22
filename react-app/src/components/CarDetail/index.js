@@ -10,14 +10,18 @@ import {
   deleteWishlistThunk,
   getAllCarWishlistsThunk,
 } from "../../store/wishlists";
+import {
+  createTestdriveThunk,
+  getAllCarTestdrivesThunk,
+} from "../../store/testdrives";
 
 const CarDetail = () => {
   const [date, setDate] = useState();
-
+  console.log(date);
   let year = new Date().getFullYear().toString();
   let month = new Date().getMonth();
   let day = new Date().getDate().toString();
-  console.log(`${year}-0${month}-${day}`);
+  // console.log(`${year}-0${month}-${day}`);
   const { carId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const car = useSelector((state) => state.cars[carId]);
@@ -25,12 +29,15 @@ const CarDetail = () => {
   const reviewsArr = Object.values(reviews);
   const wishlists = useSelector((state) => state.wishlists);
   const wishlistsArr = Object.values(wishlists);
+  const testdrives = useSelector((state) => state.testdrives);
+  const testdrivesArr = Object.values(testdrives);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getCarDetailThunk(carId));
     dispatch(getAllCarReviewsThunk(carId));
     dispatch(getAllCarWishlistsThunk(carId));
+    dispatch(getAllCarTestdrivesThunk(carId));
   }, [dispatch]);
 
   const addToWishlist = async () => {
@@ -44,6 +51,16 @@ const CarDetail = () => {
 
   const removeFromWishlist = async (id) => {
     await dispatch(deleteWishlistThunk(id));
+  };
+
+  const formSubmit = async (e) => {
+    e.preventDefault()
+    await dispatch(
+      createTestdriveThunk({
+        testdrive_date: date,
+        carId,
+      })
+    );
   };
   return (
     <>
@@ -93,23 +110,35 @@ const CarDetail = () => {
       <p>Count: {wishlistsArr.length}</p>
 
       <div>
-        <form>
-          <label>
-            Choose your preferred testdrive date:
-            <input
-              type="date"
-              name="testdrive"
-              min={`${year}-0${(month + 1).toString()}-${day}`}
-              max="2024-04-20"
-              required
-            />
-            <span class="validity"></span>
-          </label>
+        <label>
+          Choose your preferred testdrive date:
+          <input
+            type="date"
+            name="testdrive"
+            min={`${year}-0${(month + 1).toString()}-${day}`}
+            max="2024-04-20"
+            onChange={(e) => setDate(e.target.value)}
+            required
+          />
+          <span class="validity"></span>
+        </label>
 
-          <p>
-            <button>Submit</button>
-          </p>
-        </form>
+        <p>
+          <button onClick={formSubmit}>Submit</button>
+        </p>
+      </div>
+
+      <div>
+        {testdrivesArr.map((testdrive) => {
+          return (
+            <>
+              <p>
+                {testdrive.user.firstName} {testdrive.user.lastName} has
+                testdrive in {testdrive.testdrive_date}
+              </p>
+            </>
+          );
+        })}
       </div>
     </>
   );

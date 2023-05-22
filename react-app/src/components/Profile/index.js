@@ -9,6 +9,9 @@ import { getAllCarsThunk } from "../../store/cars";
 import { getAllUserReviewsThunk } from "../../store/reviews";
 import { getAllUserWishlistsThunk } from "../../store/wishlists";
 import RemoveWishModal from "../Modals/RemoveWishModal";
+import { getAllUserTestdrivesThunk } from "../../store/testdrives";
+import EditTestdriveModal from "../Modals/EditTestdriveModal";
+import CancelTestdriveModal from "../Modals/CancelTestDriveModal";
 
 const Profile = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -22,13 +25,15 @@ const Profile = () => {
   const wishlists = useSelector(state => state.wishlists)
   const userWishlists = Object.values(wishlists)
 
-  const userTestDrives = Object.values(sessionUser.testDrives)
+  const testdrives = useSelector(state => state.testdrives)
+  const userTestDrives = Object.values(testdrives)
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCarsThunk());
     dispatch(getAllUserReviewsThunk(sessionUser.id))
     dispatch(getAllUserWishlistsThunk(sessionUser.id))
+    dispatch(getAllUserTestdrivesThunk(sessionUser.id))
   }, [dispatch]);
 
   useEffect(() => {
@@ -99,15 +104,15 @@ const Profile = () => {
           return (
             <>
               <p>
-                {testdrive.testdrive_date}
+                {testdrive.testdrive_date} - {testdrive.car.carDescription}
               </p>
               <OpenModalButton
                 buttonText={"Update"}
-                modalComponent={<EditCarModal />}
+                modalComponent={<EditTestdriveModal testdrive={testdrive}/>}
               />
               <OpenModalButton
-                buttonText={"Delete"}
-                modalComponent={<DeleteCarModal />}
+                buttonText={"Cancel"}
+                modalComponent={<CancelTestdriveModal testdrive={testdrive}/>}
               />
             </>
           );

@@ -6,56 +6,56 @@ def seed_testdrives():
     testdrive = Testdrive(
         user_id=1,
         car_id=2,
-        testdrive_date=datetime(2023, 6, 23),
+        testdrive_date='2023-06-23',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
     testdrive2 = Testdrive(
         user_id=2,
         car_id=12,
-        testdrive_date=datetime(2023, 6, 12),
+        testdrive_date='2023-06-12',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
     testdrive3 = Testdrive(
         user_id=3,
         car_id=9,
-        testdrive_date=datetime(2023, 6, 4),
+        testdrive_date='2023-06-04',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
     testdrive4 = Testdrive(
         user_id=4,
         car_id=14,
-        testdrive_date=datetime(2023, 7, 23),
+        testdrive_date='2023-07-23',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
     testdrive5 = Testdrive(
         user_id=5,
         car_id=17,
-        testdrive_date=datetime(2023, 8, 23),
+        testdrive_date='2023-08-23',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
     testdrive6 = Testdrive(
         user_id=6,
         car_id=18,
-        testdrive_date=datetime(2023, 6, 13),
+        testdrive_date='2023-06-13',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
     testdrive7 = Testdrive(
         user_id=7,
         car_id=3,
-        testdrive_date=datetime(2023, 10, 13),
+        testdrive_date='2023-10-13',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )
     testdrive8 = Testdrive(
         user_id=8,
         car_id=4,
-        testdrive_date=datetime(2023, 9, 27),
+        testdrive_date='2023-09-27',
         created_at=datetime.now(),
         updated_at=datetime.now()
     )

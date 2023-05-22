@@ -13,7 +13,7 @@ class Testdrive(db.Model):
         add_prefix_for_prod("users.id")), nullable=False)
     car_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod("cars.id"), ondelete="CASCADE"), nullable=False)
-    testdrive_date = db.Column(db.DateTime, nullable=False)
+    testdrive_date = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False,
