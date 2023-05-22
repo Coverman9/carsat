@@ -24,9 +24,6 @@ function Navigation({ isLoaded }) {
             <div>
               {sessionUser && (
                 <>
-                  <Link to="/cars">
-                    <button>All Cars</button>
-                  </Link>
                   <Link to="/cars/new">
                     <button>Add a Car</button>
                   </Link>

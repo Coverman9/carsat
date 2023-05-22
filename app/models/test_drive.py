@@ -13,8 +13,7 @@ class Testdrive(db.Model):
         add_prefix_for_prod("users.id")), nullable=False)
     car_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod("cars.id"), ondelete="CASCADE"), nullable=False)
-    start_date = db.Column(db.DateTime, nullable=False)
-    end_date = db.Column(db.DateTime, nullable=False)
+    testdrive_date = db.Column(db.DateTime, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False,
                            default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False,
@@ -28,20 +27,18 @@ class Testdrive(db.Model):
             'id': self.id,
             'userId': self.user_id,
             'carId': self.car_id,
-            'startDate': self.start_date,
-            'endDate': self.end_date,
+            'testdrive_date': self.testdrive_date,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             'user': self.user.to_dict_no_ref(),
-            'message': self.message.to_dict_no_ref()
+            'car': self.car.to_dict_no_ref()
         }
 
     def to_dict_no_ref(self):
         return {
             'userId': self.user_id,
             'carId': self.car_id,
-            'startDate': self.start_date,
-            'endDate': self.end_date,
+            'testdrive_date': self.testdrive_date,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
         }

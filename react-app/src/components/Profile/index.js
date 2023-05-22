@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { getAllCarsThunk } from "../../store/cars";
 import { getAllUserReviewsThunk } from "../../store/reviews";
 import { getAllUserWishlistsThunk } from "../../store/wishlists";
+import RemoveWishModal from "../Modals/RemoveWishModal";
 
 const Profile = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -86,7 +87,7 @@ const Profile = () => {
               </p>
               <OpenModalButton
                 buttonText={"Remove"}
-                modalComponent={<DeleteCarModal />}
+                modalComponent={<RemoveWishModal wishlist={wishlist}/>}
               />
             </>
           );
@@ -98,7 +99,7 @@ const Profile = () => {
           return (
             <>
               <p>
-                {testdrive.startDate} - {testdrive.endDate}
+                {testdrive.testdrive_date}
               </p>
               <OpenModalButton
                 buttonText={"Update"}

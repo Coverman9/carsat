@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCarDetailThunk } from "../../store/cars";
 import { useParams } from "react-router-dom";
@@ -12,6 +12,12 @@ import {
 } from "../../store/wishlists";
 
 const CarDetail = () => {
+  const [date, setDate] = useState();
+
+  let year = new Date().getFullYear().toString();
+  let month = new Date().getMonth();
+  let day = new Date().getDate().toString();
+  console.log(`${year}-0${month}-${day}`);
   const { carId } = useParams();
   const sessionUser = useSelector((state) => state.session.user);
   const car = useSelector((state) => state.cars[carId]);
@@ -85,6 +91,26 @@ const CarDetail = () => {
         )}
       </div>
       <p>Count: {wishlistsArr.length}</p>
+
+      <div>
+        <form>
+          <label>
+            Choose your preferred testdrive date:
+            <input
+              type="date"
+              name="testdrive"
+              min={`${year}-0${(month + 1).toString()}-${day}`}
+              max="2024-04-20"
+              required
+            />
+            <span class="validity"></span>
+          </label>
+
+          <p>
+            <button>Submit</button>
+          </p>
+        </form>
+      </div>
     </>
   );
 };

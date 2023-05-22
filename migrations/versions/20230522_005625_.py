@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 08a2098b88e2
+Revision ID: 2c0d7a220b7e
 Revises:
-Create Date: 2023-05-17 01:41:48.970617
+Create Date: 2023-05-22 00:56:25.354482
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '08a2098b88e2'
+revision = '2c0d7a220b7e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -68,8 +68,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('car_id', sa.Integer(), nullable=False),
-    sa.Column('start_date', sa.DateTime(), nullable=False),
-    sa.Column('end_date', sa.DateTime(), nullable=False),
+    sa.Column('testdrive_date', sa.DateTime(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['car_id'], ['cars.id'], ondelete='CASCADE'),
