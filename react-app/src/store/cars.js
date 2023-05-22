@@ -133,7 +133,7 @@ const cars = (state = initialState, action) => {
   let newState = {};
   switch (action.type) {
     case ALL_CARS:
-      action.cars.cars.forEach((car) => (newState[car.id] = car));
+      action.cars.cars?.forEach((car) => (newState[car.id] = car));
       return newState;
     case ONE_CAR:
       newState[action.car.car.id] = action.car.car;

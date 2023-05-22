@@ -5,7 +5,11 @@ import { useParams } from "react-router-dom";
 import { createReviewThunk, getAllCarReviewsThunk } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
 import AddReviewModal from "../Modals/AddReviewModal";
-import { getAllCarWishlistsThunk } from "../../store/wishlists";
+import {
+  createWishlistThunk,
+  deleteWishlistThunk,
+  getAllCarWishlistsThunk,
+} from "../../store/wishlists";
 
 const CarDetail = () => {
   const { carId } = useParams();
@@ -23,6 +27,18 @@ const CarDetail = () => {
     dispatch(getAllCarWishlistsThunk(carId));
   }, [dispatch]);
 
+  const addToWishlist = async () => {
+    await dispatch(
+      createWishlistThunk({
+        description: `${sessionUser.firstName} added ${car.make} to his wishlist`,
+        carId,
+      })
+    );
+  };
+
+  const removeFromWishlist = async (id) => {
+    await dispatch(deleteWishlistThunk(id));
+  };
   return (
     <>
       <h1>Car Detail</h1>
@@ -47,14 +63,28 @@ const CarDetail = () => {
         })}
       </div>
       <div>
-        {wishlistsArr.map((wishlist) => {
-          return (
-            <>
-              {wishlist.userId === sessionUser.id ? (`♥  ${wishlistsArr.length}`) : (`♡  ${wishlistsArr.length}`)}
-            </>
-          );
-        })}
+        {wishlistsArr.length === 0 ? (
+          <div onClick={addToWishlist}>♡</div>
+        ) : wishlistsArr.length &&
+          wishlistsArr.find(
+            (wishlist) => wishlist.userId === sessionUser.id
+          ) ? (
+          <div
+            onClick={() =>
+              removeFromWishlist(
+                wishlistsArr.find(
+                  (wishlist) => wishlist.userId === sessionUser.id
+                ).id
+              )
+            }
+          >
+            ♥
+          </div>
+        ) : (
+          <div onClick={addToWishlist}>♡</div>
+        )}
       </div>
+      <p>Count: {wishlistsArr.length}</p>
     </>
   );
 };

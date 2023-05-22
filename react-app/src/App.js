@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
@@ -9,8 +9,10 @@ import Cars from "./components/Cars";
 import CarDetail from "./components/CarDetail";
 import AddCar from "./components/AddCar";
 import Profile from "./components/Profile";
+import LandingPage from "./components/LandingPage";
 
 function App() {
+  const sessionUser = useSelector(state => state.session.user)
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -22,14 +24,14 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/">
+            {sessionUser ? (<Cars />) : (<LandingPage />)}
+          </Route>
           <Route exact path="/login" >
             <LoginFormPage />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
-          </Route>
-          <Route exact path="/cars">
-            <Cars />
           </Route>
           <Route exact path="/cars/new">
             <AddCar />
