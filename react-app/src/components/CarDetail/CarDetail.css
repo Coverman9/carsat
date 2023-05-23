@@ -15,3 +15,22 @@
     grid-template-columns: 1fr 1fr;
     gap: 5px;
 }
+
+.car-detail-reviews-block{
+    border: 2px solid whitesmoke;
+    padding: 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.car-detail-reviews-block img {
+    width: 350px;
+    height: 220px;
+}
+.each-review{
+    border: 2px solid whitesmoke;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 10px;
+}

@@ -43,7 +43,7 @@ const AddCar = () => {
   };
   return (
     <>
-      <div>
+      <div className="add-car-main-div">
         <form onSubmit={handleSubmit}>
           <h2>Adding new Car</h2>
           <ul>
@@ -56,6 +56,7 @@ const AddCar = () => {
           <div className="car-name-desc">
             <div className="create-car-name">
               <label>
+                Make:
                 <input
                   className="create-car-inputfeild"
                   type="text"
@@ -68,6 +69,7 @@ const AddCar = () => {
             </div>
             <div className="create-car-name">
               <label>
+                Model:
                 <input
                   className="create-car-inputfeild"
                   type="text"
@@ -78,7 +80,7 @@ const AddCar = () => {
                 />
               </label>
             </div>
-            <div className="create-car-name">
+            <div className="create-car-type">
               <label>Choose Car type:</label>
               <select value={type} onChange={(e) => setType(e.target.value)}>
                 {types.map((type) => (
@@ -90,6 +92,7 @@ const AddCar = () => {
             </div>
             <div className="create-car-name">
               <label>
+                Year:
                 <input
                   className="create-car-inputfeild"
                   type="number"
@@ -102,6 +105,7 @@ const AddCar = () => {
             </div>
             <div className="create-car-name">
               <label>
+                Mileage:
                 <input
                   className="create-car-inputfeild"
                   type="number"
@@ -113,6 +117,7 @@ const AddCar = () => {
             </div>
             <div className="create-car-name">
               <label>
+                Price:
                 <input
                   className="create-car-inputfeild"
                   type="number"
@@ -125,6 +130,7 @@ const AddCar = () => {
             </div>
             <div className="create-car-name">
               <label>
+                Color:
                 <input
                   className="create-car-inputfeild"
                   type="text"
@@ -137,6 +143,7 @@ const AddCar = () => {
             </div>
             <div className="create-car-textarea">
               <label>
+                Describe your car:
                 <textarea
                   className="create-car-inputfeild"
                   rows="5"
