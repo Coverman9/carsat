@@ -15,6 +15,7 @@ import {
   getAllCarTestdrivesThunk,
 } from "../../store/testdrives";
 import "./CarDetail.css";
+import DeleteReviewModal from "../Modals/DeleteReviewModal";
 
 const CarDetail = () => {
   const [date, setDate] = useState();
@@ -62,14 +63,23 @@ const CarDetail = () => {
       })
     );
   };
-  const otherImages = car?.images.slice(1)
-  console.log(otherImages)
+  const otherImages = car?.images.slice(1);
+  let stars = [];
+  let avgRating;
+  car?.reviews.map((review) => stars.push(parseInt(review.stars)));
+  avgRating = stars.reduce((avg, val, _, { length }) => {
+    return avg + val / length;
+  }, 0);
   return (
     <>
       <h1>Car Detail</h1>
       <h2>
         {car?.year} {car?.make} {car?.model}
       </h2>
+      <h3>
+        {" "}
+        Price: {car?.price}$ | {car?.mileage} miles
+      </h3>
       <div className="car-detail-image-container">
         <div className="car-detail-main-image">
           <img src={car?.images[0]?.image} />
@@ -91,15 +101,28 @@ const CarDetail = () => {
           modalComponent={<AddReviewModal carId={carId} />}
         />
       </div>
-      <div>
-        {reviewsArr.map((review) => {
-          return (
-            <>
-              <p>{review.review}</p>
-              <p>{review.stars}</p>
-            </>
-          );
-        })}
+      <div className="car-detail-reviews-block">
+        <div>
+          <img src={car?.images[0]?.image} />
+          <p>{avgRating.toFixed(1)} out of 5</p>
+        </div>
+        <div>
+          <h4>Customer Reviews:</h4>
+          {reviewsArr.map((review) => {
+            return (
+              <>
+                <div className="each-review">
+                  <p>
+                    {review.user.firstName} {review.user.lastName}:{" "}
+                    {review.review}
+                  </p>
+                  <p>{review.stars}</p>
+                  {sessionUser.id === review.userId && <OpenModalButton buttonText={"Delete"} modalComponent={<DeleteReviewModal review={review}/>}/>}
+                </div>
+              </>
+            );
+          })}
+        </div>
       </div>
       <div>
         {wishlistsArr.length === 0 ? (

@@ -17,7 +17,7 @@ const DeleteReviewModal = ({review}) => {
     return (
         <>
             <h2>Delete Car</h2>
-            <p>Are u sure you want remove your car?</p>
+            <p>Are u sure you want remove your review?</p>
             <button onClick={confirmDelete}>Yes</button>
             <button onClick={closeModal}>No</button>
         </>
