@@ -10,32 +10,34 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="main-navbar">
-      <ul>
-        <li>
-          <NavLink exact to="/">
-            Home
-          </NavLink>
-        </li>
+        <div>
+          <li>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+          </li>
+        </div>
         {isLoaded && (
           <>
-            <li>
-              <ProfileButton user={sessionUser} />
-            </li>
-            <div>
+            <div className="navbar-profile-buttons">
               {sessionUser && (
                 <>
-                  <Link to="/cars/new">
-                    <button>Add a Car</button>
+                  <Link to={`/profile/${sessionUser.id}`}>
+                    <button className="profile-button">Profile</button>
                   </Link>
-				  <Link to={`/profile/${sessionUser.id}`}>
-				  	<button>Profile</button>
-				  </Link>
+                  <Link to="/cars/new">
+                    <button className="addcar-button">Add a Car</button>
+                  </Link>
                 </>
               )}
             </div>
+            <div>
+              <li>
+                <ProfileButton user={sessionUser} />
+              </li>
+            </div>
           </>
         )}
-      </ul>
     </div>
   );
 }

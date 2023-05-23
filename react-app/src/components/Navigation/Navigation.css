@@ -1,5 +1,14 @@
 .profile-dropdown {
   position: absolute;
+  background-color: #1d1c1d;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  align-items: center;
+  border: #464646 1px solid;
 }
 
 .hidden {
@@ -7,7 +16,46 @@
 }
 
 .main-navbar{
-  background-color: rgb(75, 76, 76);
+  display: flex;
+  justify-content: space-around;
+  background-color: #111010;
   margin: 0;
   color: whitesmoke;
+  height: 50px;
+}
+
+.main-navbar ul {
+  margin: 0;
+}
+
+.navbar-profile-buttons{
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-button {
+  padding: 5px 30px;
+  font-size: 20px;
+  margin-right: 20px;
+  background-color: #464646;
+  border-radius: 10px;
+  cursor: pointer;
+  color: whitesmoke;
+}
+.profile-button:hover {
+  background-color: aliceblue;
+  background-color: #1d1c1d;
+}
+.addcar-button {
+  padding: 5px 30px;
+  font-size: 20px;
+  margin-left: 10px;
+  background-color: #464646;
+  border-radius: 10px;
+  cursor: pointer;
+  color: whitesmoke;
+}
+.addcar-button:hover {
+  background-color: aliceblue;
+  background-color: #1d1c1d;
 }
