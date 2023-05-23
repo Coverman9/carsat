@@ -3,6 +3,8 @@ import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import OpenModalButton from "../OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -61,12 +63,19 @@ function LoginFormModal() {
               Log In
             </button>
             <div className="demo-user-buttons">
+              <div>
+              Don't have an account?
+              Login as
+              </div>
               <button
                 className="demo-user-button david"
                 onClick={() => loginDemoUser("zlatan@aa.io")}
               >
                 Demo User #1
               </button>
+              <div className="or-signup">
+                Or <OpenModalButton buttonText={'Signup'} modalComponent={<SignupFormModal />}/>
+              </div>
             </div>
           </div>
         </form>
