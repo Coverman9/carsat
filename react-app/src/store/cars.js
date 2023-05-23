@@ -3,6 +3,7 @@ const ONE_CAR = "cars/ONE_CAR";
 const CREATE_CAR = "cars/CREATE_CAR";
 const UPDATE_CAR = "cars/UPDATE_CAR";
 const DELETE_CAR = "cars/DELETE_CAR";
+const CAR_IMAGES = "cars/CAR_IMAGES"
 
 const allCarsAction = (cars) => ({
   type: ALL_CARS,
@@ -28,6 +29,11 @@ const deleteCarAction = (carId) => ({
   type: DELETE_CAR,
   carId,
 });
+
+const carImagesAction = (images) => ({
+  type:CAR_IMAGES,
+  images
+})
 
 ///-------------------THUNK-------------------------
 
@@ -125,6 +131,14 @@ export const deleteCarThunk = (carId) => async (dispatch) => {
     return errors;
   }
 };
+
+export const carImagesThunk = () => async (dispatch) => {
+  const res = await fetch(`/api/images`)
+  const images = await res.json()
+
+  await dispatch(carImagesAction(images))
+}
+
 ///------------------REDUCERS--------------------------
 
 const initialState = {};
@@ -148,6 +162,9 @@ const cars = (state = initialState, action) => {
     case DELETE_CAR:
       newState = { ...state };
       delete newState[action.carId]
+      return newState
+    case CAR_IMAGES:
+      console.log(action)
       return newState
     default:
       return state;
