@@ -1,4 +1,5 @@
 import "./LandingPage.css";
+
 const LandingPage = () => {
   return (
     <>
@@ -10,10 +11,10 @@ const LandingPage = () => {
         </div>
       </div>
       <div className="cards">
-        <h2>Check out these EPIC Unaas</h2>
+        <h2>About Me</h2>
         <div className="cards__container">
           <div className="cards__wrapper">
-           
+
           </div>
         </div>
       </div>
