@@ -56,3 +56,17 @@ overflow: hidden;
 .jurok-wishlist p{
     margin-left: 10px;
 }
+
+.car-detail-add-button button{
+    padding: 4px 10px;
+    font-size: 15px;
+    background-color: #141414;
+    border-radius: 10px;
+    color: whitesmoke;
+    margin-right: 40px;
+    cursor: pointer;
+}
+.car-detail-add-button button:hover {
+    background-color: whitesmoke;
+    color: #141414;
+}

@@ -31,7 +31,6 @@ const Profile = () => {
   const testdrives = useSelector((state) => state.testdrives);
   const userTestDrives = Object.values(testdrives);
 
-  console.log(userReviews);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -49,7 +48,7 @@ const Profile = () => {
       <h1>Profile Page</h1>
       <div className="profile-page-main-div">
         <div>
-          <h2>Your Cars</h2>
+          <h2 className="your-cars-h2">Your Cars</h2>
           {userCars.map((car) => {
             return (
               <>
@@ -84,35 +83,39 @@ const Profile = () => {
           {userReviews.map((review) => {
             return (
               <>
-                <p>
-                  For: {review.car.make} {review.car.model}
-                </p>
-                <p>Review: {review.review}</p>
-                <p>★ {review.stars}</p>
-                <OpenModalButton
-                  buttonText={"Update"}
-                  modalComponent={<EditReviewModal _review={review} />}
-                />
-                <OpenModalButton
-                  buttonText={"Delete"}
-                  modalComponent={<DeleteReviewModal review={review} />}
-                />
+                <div className="car-detail-your-reviews">
+                  <p>
+                    For: {review.car.make} {review.car.model}
+                  </p>
+                  <p>Review: {review.review}</p>
+                  <p>★ {review.stars}</p>
+                  <OpenModalButton
+                    buttonText={"Update"}
+                    modalComponent={<EditReviewModal _review={review} />}
+                  />
+                  <OpenModalButton
+                    buttonText={"Delete"}
+                    modalComponent={<DeleteReviewModal review={review} />}
+                  />
+                </div>
               </>
             );
           })}
         </div>
         <div>
-          <h2>Your Wishlist</h2>
+          <h2 className="your-wishlist-h2">Your Wishlist</h2>
           {userWishlists.map((wishlist) => {
             return (
               <>
-                <p>
-                  {wishlist.car.make} {wishlist.car.model}
-                </p>
-                <OpenModalButton
-                  buttonText={"Remove"}
-                  modalComponent={<RemoveWishModal wishlist={wishlist} />}
-                />
+                <div className="profile-wishlist-div">
+                  <p>
+                    {wishlist.car.year} {wishlist.car.make} {wishlist.car.model}
+                  </p>
+                  <OpenModalButton
+                    buttonText={"Remove"}
+                    modalComponent={<RemoveWishModal wishlist={wishlist} />}
+                  />
+                </div>
               </>
             );
           })}

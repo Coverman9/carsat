@@ -45,7 +45,8 @@ const Cars = () => {
                 .filter(
                   (car) =>
                     car.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    car.model.toLowerCase().includes(searchTerm.toLowerCase())
+                    car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    car.color.toLowerCase().includes(searchTerm.toLowerCase())
                 )
                 .map((car) => {
                   return (

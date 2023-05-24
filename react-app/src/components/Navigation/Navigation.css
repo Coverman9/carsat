@@ -88,3 +88,24 @@
   width: 100px;
   height: 100px;
 }
+
+.login-signup-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-signup-buttons button {
+  padding: 4px 20px;
+  font-size: 15px;
+  border-radius: 8px;
+  margin-top: 5px;
+  font-weight: bold;
+  background-color: #141414;
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.login-signup-buttons button:hover{
+  background-color: whitesmoke;
+  color: #141414;
+}
