@@ -77,9 +77,11 @@
   cursor: pointer;
 }
 
-.fas {
-  font-size: 20px;
-  background: transparent;
+.profile-icon {
+  font-size: 30px;
+  border-radius: 50%;
+  background: -webkit-linear-gradient(#d2cece, #1389d3f2);
+  color: black;
 }
 
 .carsat-logo {

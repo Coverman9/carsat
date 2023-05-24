@@ -31,7 +31,7 @@ const Profile = () => {
   const testdrives = useSelector((state) => state.testdrives);
   const userTestDrives = Object.values(testdrives);
 
-  console.log("IMAGES ------>", carsArr);
+  console.log(userReviews);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -46,33 +46,35 @@ const Profile = () => {
 
   return (
     <>
+      <h1>Profile Page</h1>
       <div className="profile-page-main-div">
-        <h1>Profile Page</h1>
         <div>
           <h2>Your Cars</h2>
           {userCars.map((car) => {
             return (
               <>
                 <div className="profile-your-cars">
+                  <p className="profile-page-cars-make">
+                    {car.make} {car.model}
+                  </p>
                   <Link to={`/cars/${car.id}`}>
                     <img src={car?.images?.[0]?.image} />
                   </Link>
-                  <p>
-                    {car.make} {car.model}
-                  </p>
+                  <div>
+                    <OpenModalButton
+                      buttonText={"Add image"}
+                      modalComponent={<AddImageModal car={car} />}
+                    />
+                    <OpenModalButton
+                      buttonText={"Update"}
+                      modalComponent={<EditCarModal car={car} />}
+                    />
+                    <OpenModalButton
+                      buttonText={"Delete"}
+                      modalComponent={<DeleteCarModal car={car} />}
+                    />
+                  </div>
                 </div>
-                <OpenModalButton
-                  buttonText={"Add image"}
-                  modalComponent={<AddImageModal car={car} />}
-                />
-                <OpenModalButton
-                  buttonText={"Update"}
-                  modalComponent={<EditCarModal car={car} />}
-                />
-                <OpenModalButton
-                  buttonText={"Delete"}
-                  modalComponent={<DeleteCarModal car={car} />}
-                />
               </>
             );
           })}
@@ -82,7 +84,11 @@ const Profile = () => {
           {userReviews.map((review) => {
             return (
               <>
-                <p>{review.review}</p>
+                <p>
+                  For: {review.car.make} {review.car.model}
+                </p>
+                <p>Review: {review.review}</p>
+                <p>★ {review.stars}</p>
                 <OpenModalButton
                   buttonText={"Update"}
                   modalComponent={<EditReviewModal _review={review} />}
