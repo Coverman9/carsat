@@ -1,3 +1,9 @@
+.profile-page-main-div {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
 .profile-page-main-div img{
     width: 300px;
     border-radius: 20px;
@@ -5,4 +11,30 @@
 
 .profile-your-cars {
     display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: self-start;
+    margin-left: 120px;
+}
+
+.profile-page-cars-make {
+    margin-left: 50px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.profile-page-main-div button {
+    padding: 4px 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    background-color: #141414;
+    color: whitesmoke;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.profile-page-main-div button:hover {
+    background-color: whitesmoke;
+    color: #141414;
+}
+
+.profile-your-cars button {
 }
