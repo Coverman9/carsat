@@ -76,10 +76,37 @@ const CarDetail = () => {
       <h2>
         {car?.year} {car?.make} {car?.model}
       </h2>
-      <h3>
-        {" "}
-        Price: {car?.price}$ | {car?.mileage} miles
-      </h3>
+      <div className="car-price-and-wishlist">
+        <div>
+          <h3>
+            {" "}
+            Price: {car?.price}$ | {car?.mileage} miles
+          </h3>
+        </div>
+        <div className="jurok-wishlist">
+          {wishlistsArr.length === 0 ? (
+            <div onClick={addToWishlist}>♡</div>
+          ) : wishlistsArr.length &&
+            wishlistsArr.find(
+              (wishlist) => wishlist.userId === sessionUser.id
+            ) ? (
+            <div
+              onClick={() =>
+                removeFromWishlist(
+                  wishlistsArr.find(
+                    (wishlist) => wishlist.userId === sessionUser.id
+                  ).id
+                )
+              }
+            >
+              ♥
+            </div>
+          ) : (
+            <div onClick={addToWishlist}>♡</div>
+          )}
+          <p>{wishlistsArr.length}</p>
+        </div>
+      </div>
       <div className="car-detail-image-container">
         <div className="car-detail-main-image">
           <img src={car?.images[0]?.image} />
@@ -87,9 +114,9 @@ const CarDetail = () => {
         <div className="car-detail-other-images">
           {otherImages?.map((car) => {
             return (
-              <>
+              <div className="car-detail-image">
                 <img src={car.image} />
-              </>
+              </div>
             );
           })}
         </div>
@@ -117,36 +144,18 @@ const CarDetail = () => {
                     {review.review}
                   </p>
                   <p>{review.stars}</p>
-                  {sessionUser.id === review.userId && <OpenModalButton buttonText={"Delete"} modalComponent={<DeleteReviewModal review={review}/>}/>}
+                  {sessionUser.id === review.userId && (
+                    <OpenModalButton
+                      buttonText={"Delete"}
+                      modalComponent={<DeleteReviewModal review={review} />}
+                    />
+                  )}
                 </div>
               </>
             );
           })}
         </div>
       </div>
-      <div>
-        {wishlistsArr.length === 0 ? (
-          <div onClick={addToWishlist}>♡</div>
-        ) : wishlistsArr.length &&
-          wishlistsArr.find(
-            (wishlist) => wishlist.userId === sessionUser.id
-          ) ? (
-          <div
-            onClick={() =>
-              removeFromWishlist(
-                wishlistsArr.find(
-                  (wishlist) => wishlist.userId === sessionUser.id
-                ).id
-              )
-            }
-          >
-            ♥
-          </div>
-        ) : (
-          <div onClick={addToWishlist}>♡</div>
-        )}
-      </div>
-      <p>Count: {wishlistsArr.length}</p>
 
       <div>
         <label>

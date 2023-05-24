@@ -16,6 +16,10 @@
     gap: 5px;
 }
 
+.car-detail-image {
+overflow: hidden;
+}
+
 .car-detail-reviews-block{
     border: 2px solid whitesmoke;
     padding: 20px;
@@ -33,4 +37,22 @@
     margin-bottom: 10px;
     border-radius: 10px;
     padding: 10px;
+}
+
+.car-price-and-wishlist {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jurok-wishlist {
+    display: flex;
+    align-items: center;
+    margin-right: 70px;
+    font-size: 30px;
+    font-weight: 800;
+    cursor: pointer;
+}
+.jurok-wishlist p{
+    margin-left: 10px;
 }

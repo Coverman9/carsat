@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCarsThunk } from "../../store/cars";
 import "./Cars.css";
@@ -17,6 +17,7 @@ const getCars = (cars) => {
 };
 
 const Cars = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const carsObj = useSelector((state) => state.cars);
   const carsArr = Object.values(carsObj);
   const cars = getCars(carsArr);
@@ -27,29 +28,42 @@ const Cars = () => {
 
   return (
     <>
-      <h1>All Cars</h1>
+      <h1 className="all-cars-h1">All Cars</h1>
+      <div className="search-car-input">
+        <input
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search for Car"
+        />
+      </div>
       {Object.keys(cars).map((type) => {
+
         return (
           <>
             <h3>{type ? type.toUpperCase() : "OTHERS"}</h3>
             <div className="all-cars-container">
-              {cars[type].map((car) => {
-                return (
-                  <>
-                    <Link to={`/cars/${car.id}`}>
-                      <div className="car-image-info-div">
-                        <img src={car?.images[0]?.image} />
-                        <div className="all-cars-make-model">
-                          <p>
-                            {car.make} {car.model}
-                          </p>
-                          <p className="car-price">${car.price}</p>
+              {cars[type]
+                .filter(
+                  (car) =>
+                    car.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    car.model.toLowerCase().includes(searchTerm.toLowerCase())
+                )
+                .map((car) => {
+                  return (
+                    <>
+                      <Link to={`/cars/${car.id}`}>
+                        <div className="car-image-info-div">
+                          <img src={car?.images[0]?.image} />
+                          <div className="all-cars-make-model">
+                            <p>
+                              {car.make} {car.model}
+                            </p>
+                            <p className="car-price">${car.price}</p>
+                          </div>
                         </div>
-                      </div>
-                    </Link>
-                  </>
-                );
-              })}
+                      </Link>
+                    </>
+                  );
+                })}
             </div>
           </>
         );
