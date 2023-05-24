@@ -37,7 +37,7 @@ const EditCarModal = ({ car }) => {
 
   return (
     <>
-      <div>
+      <div className="update-info-modal">
         <form onSubmit={handleSubmit}>
           <h2>Update Car</h2>
           <ul>
@@ -50,6 +50,7 @@ const EditCarModal = ({ car }) => {
           <div className="car-name-desc">
             <div className="create-car-name">
               <label>
+                Make:
                 <input
                   className="create-car-inputfeild"
                   type="text"
@@ -62,6 +63,7 @@ const EditCarModal = ({ car }) => {
             </div>
             <div className="create-car-name">
               <label>
+                Model:
                 <input
                   className="create-car-inputfeild"
                   type="text"
@@ -84,6 +86,7 @@ const EditCarModal = ({ car }) => {
             </div>
             <div className="create-car-name">
               <label>
+                Year:
                 <input
                   className="create-car-inputfeild"
                   type="number"
@@ -96,6 +99,7 @@ const EditCarModal = ({ car }) => {
             </div>
             <div className="create-car-name">
               <label>
+                Mileage:
                 <input
                   className="create-car-inputfeild"
                   type="number"
@@ -107,6 +111,7 @@ const EditCarModal = ({ car }) => {
             </div>
             <div className="create-car-name">
               <label>
+                Price:
                 <input
                   className="create-car-inputfeild"
                   type="number"
@@ -119,6 +124,7 @@ const EditCarModal = ({ car }) => {
             </div>
             <div className="create-car-name">
               <label>
+                Color:
                 <input
                   className="create-car-inputfeild"
                   type="text"
