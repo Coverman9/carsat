@@ -72,7 +72,7 @@ const CarDetail = () => {
     return avg + val / length;
   }, 0);
   let hasReviewd = car?.reviews.find((review) => review.userId === sessionUser.id);
-
+  console.log(car?.ownerId, sessionUser.id)
   return (
     <>
       <h1>Car Detail</h1>
@@ -86,7 +86,7 @@ const CarDetail = () => {
             Price: {car?.price}$ | {car?.mileage} miles
           </h3>
         </div>
-        {parseInt(carId) !== sessionUser.id ? (
+        {sessionUser.id !== car?.ownerId ? (
           <div className="jurok-wishlist">
             {wishlistsArr.length === 0 ? (
               <div onClick={addToWishlist}>♡</div>
