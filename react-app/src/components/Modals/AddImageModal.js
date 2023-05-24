@@ -13,7 +13,6 @@ const AddImageModal = ({ car }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    console.log(image);
     formData.append("image", image);
 
     // aws uploads can be a bit slow—displaying
@@ -28,7 +27,6 @@ const AddImageModal = ({ car }) => {
       await res.json();
       setImageLoading(false);
       closeModal();
-      history.push(`/profile/${sessionUser.id}`);
     } else {
       setImageLoading(false);
       // a real app would probably use more advanced

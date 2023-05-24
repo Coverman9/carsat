@@ -16,6 +16,7 @@ import {
 } from "../../store/testdrives";
 import "./CarDetail.css";
 import DeleteReviewModal from "../Modals/DeleteReviewModal";
+import AddImageModal from "../Modals/AddImageModal";
 
 const CarDetail = () => {
   const [date, setDate] = useState();
@@ -70,6 +71,8 @@ const CarDetail = () => {
   avgRating = stars.reduce((avg, val, _, { length }) => {
     return avg + val / length;
   }, 0);
+  let hasReviewd = car?.reviews.find((review) => review.userId === sessionUser.id);
+
   return (
     <>
       <h1>Car Detail</h1>
@@ -83,29 +86,38 @@ const CarDetail = () => {
             Price: {car?.price}$ | {car?.mileage} miles
           </h3>
         </div>
-        <div className="jurok-wishlist">
-          {wishlistsArr.length === 0 ? (
-            <div onClick={addToWishlist}>♡</div>
-          ) : wishlistsArr.length &&
-            wishlistsArr.find(
-              (wishlist) => wishlist.userId === sessionUser.id
-            ) ? (
-            <div
-              onClick={() =>
-                removeFromWishlist(
-                  wishlistsArr.find(
-                    (wishlist) => wishlist.userId === sessionUser.id
-                  ).id
-                )
-              }
-            >
-              ♥
-            </div>
-          ) : (
-            <div onClick={addToWishlist}>♡</div>
-          )}
-          <p>{wishlistsArr.length}</p>
-        </div>
+        {parseInt(carId) !== sessionUser.id ? (
+          <div className="jurok-wishlist">
+            {wishlistsArr.length === 0 ? (
+              <div onClick={addToWishlist}>♡</div>
+            ) : wishlistsArr.length &&
+              wishlistsArr.find(
+                (wishlist) => wishlist.userId === sessionUser.id
+              ) ? (
+              <div
+                onClick={() =>
+                  removeFromWishlist(
+                    wishlistsArr.find(
+                      (wishlist) => wishlist.userId === sessionUser.id
+                    ).id
+                  )
+                }
+              >
+                ♥
+              </div>
+            ) : (
+              <div onClick={addToWishlist}>♡</div>
+            )}
+            <p>{wishlistsArr.length}</p>
+          </div>
+        ) : (
+          <div className="car-detail-add-button">
+            <OpenModalButton
+              buttonText={"Add image"}
+              modalComponent={<AddImageModal car={car} />}
+            />
+          </div>
+        )}
       </div>
       <div className="car-detail-image-container">
         <div className="car-detail-main-image">
@@ -122,12 +134,15 @@ const CarDetail = () => {
         </div>
       </div>
       <h2>Car Reviews:</h2>
-      <div>
-        <OpenModalButton
-          buttonText={"Add review"}
-          modalComponent={<AddReviewModal carId={carId} />}
-        />
-      </div>
+      {sessionUser?.id != car?.ownerId &&
+        !hasReviewd && (
+          <div className="car-detail-add-button">
+            <OpenModalButton
+              buttonText={"Add review"}
+              modalComponent={<AddReviewModal carId={carId} />}
+            />
+          </div>
+        )}
       <div className="car-detail-reviews-block">
         <div>
           <img src={car?.images[0]?.image} />
