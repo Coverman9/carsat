@@ -38,6 +38,7 @@
   padding: 8px 20px;
   border: 1px solid var(--primary);
   transition: all 0.3s ease-out;
+  font-weight: bold;
 }
 .hero-btns button:hover{
   background: #fff;
@@ -46,9 +47,10 @@
 }
 
 .cards {
+  display: flex;
   padding: 4rem;
   background: #141414;
-
+align-items: center;
 }
 
 h1 {
@@ -62,6 +64,12 @@ h1 {
   align-items: center;
   max-width: 1500px;
   margin: 0 auto;
+  font-size: 40px;
+  cursor: pointer;
+}
+.cards__container a {
+  color: #f9f9f9;
+  text-decoration: none;
 }
 
 .cards__wrapper {

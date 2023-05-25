@@ -18,9 +18,23 @@ const LandingPage = () => {
         </div>
       </div>
       <div className="cards">
-        <h2>About Me</h2>
+        <div>
+          <h2>About Me</h2>
+        </div>
         <div className="cards__container">
-          <div className="cards__wrapper"></div>
+          <a href="https://github.com/Coverman9">
+            <i class="fa-brands fa-github fa-flip fa-2xl"></i>
+          </a>
+        </div>
+        <div className="cards__container">
+          <a href="https://www.linkedin.com/in/emir-usubaliev-5904b0235/">
+            <i class="fa-brands fa-linkedin fa-flip fa-2xl"></i>
+          </a>
+        </div>
+        <div className="cards__container">
+          <a href="https://www.instagram.com/usubalieve/">
+            <i class="fa-brands fa-instagram fa-flip fa-2xl"></i>
+          </a>
         </div>
       </div>
     </>
