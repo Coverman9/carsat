@@ -21,25 +21,37 @@ const AddCar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(
-      createCarThunk({
-        make,
-        model,
-        type,
-        year,
-        mileage,
-        price,
-        color,
-        car_description: carDescription,
-      })
-    )
-      .then((newCar) => history.push(`/cars/${newCar.id}`))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) {
-          setErrors(data.errors);
-        }
-      });
+    if (make.length < 2 || make.length > 20) {
+      setErrors(["Make can be between 2 and 20 characters"]);
+    } else if(model.length < 2 || model.length > 20) {
+      setErrors(["Model can be between 2 and 20 characters"]);
+    } else if(year < 1900 || year > 2023) {
+      setErrors(["Year can be between 1900 and 2023"]);
+    } else if(price < 0) {
+      setErrors(["Price must be greater than 0"]);
+    } else if(mileage < 0) {
+      setErrors(["Mileage must be greater than 0"]);
+    } else {
+      dispatch(
+        createCarThunk({
+          make,
+          model,
+          type,
+          year,
+          mileage,
+          price,
+          color,
+          car_description: carDescription,
+        })
+      )
+        .then((newCar) => history.push(`/cars/${newCar.id}`))
+        .catch(async (res) => {
+          const data = await res.json();
+          if (data && data.errors) {
+            setErrors(data.errors);
+          }
+        });
+    }
   };
   return (
     <>

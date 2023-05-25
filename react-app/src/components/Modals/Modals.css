@@ -89,3 +89,28 @@
 .update-info-modal h2 {
     margin: 0;
 }
+
+
+.add-image-modal {
+    font-size: 20px;
+    background-color: #141414;
+    color: whitesmoke;
+    width: 240px;
+    height: 100px;
+    border: 1px solid whitesmoke;
+}
+.add-image-modal button {
+    width: 80%;
+    font-size: 15px;
+    padding: 2px 0;
+    margin-top: 30px;
+    margin-left: 25px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    background-color: rgb(236, 232, 232);
+    font-weight: bold;
+}
+.add-image-modal button:hover {
+    background-color: #141414;
+    color: whitesmoke;
+}
