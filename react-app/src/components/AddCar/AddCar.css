@@ -59,3 +59,7 @@
     margin-left: 10px;
     resize: none;
 }
+
+.form-errors {
+    color: red;
+}

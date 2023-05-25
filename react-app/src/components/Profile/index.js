@@ -31,6 +31,12 @@ const Profile = () => {
   const testdrives = useSelector((state) => state.testdrives);
   const userTestDrives = Object.values(testdrives);
 
+  const wishedCarsImgs = userWishlists.map(car => {
+    let wishedCar = carsArr.find(el => el.id === car.carId)
+    return {...car, images: wishedCar?.images}
+  })
+  // console.log(carsArr)
+  // console.log(userWishlists)
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -104,24 +110,25 @@ const Profile = () => {
         </div>
         <div>
           <h2 className="your-wishlist-h2">Your Wishlist</h2>
-          {userWishlists.map((wishlist) => {
+          <div className="profile-wishlist-div">
+          {wishedCarsImgs.length && wishedCarsImgs?.map((wishlist) => {
             return (
-              <>
-                <div className="profile-wishlist-div">
+                <div className="wishlist-list-div">
                   <p>
                     {wishlist.car.year} {wishlist.car.make} {wishlist.car.model}
                   </p>
+                  <img src={wishlist.images && wishlist?.images[0]?.image}/>
                   <OpenModalButton
                     buttonText={"Remove"}
                     modalComponent={<RemoveWishModal wishlist={wishlist} />}
                   />
                 </div>
-              </>
             );
           })}
+          </div>
         </div>
         <div>
-          <h2>Your Testdrive</h2>
+          <h2>Your Testdrives</h2>
           {userTestDrives.map((testdrive) => {
             return (
               <>
