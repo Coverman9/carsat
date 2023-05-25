@@ -17,56 +17,60 @@ const AddReviewModal = ({ carId }) => {
       createReviewThunk({
         review,
         stars,
-        carId
+        carId,
       })
     ).then(() => closeModal());
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <div className="create-review-modal">
-          <h2>Add Review:</h2>
-          <div>
-            <ul>
-              {errors.map((error, idx) => (
-                <li className="form-errors" key={idx}>
-                  {error}
-                </li>
-              ))}
-            </ul>
+      <div className="edit-review-modal">
+        <form onSubmit={handleSubmit}>
+          <div className="create-review-modal">
+            <h2>Add Review:</h2>
+            <div>
+              <ul>
+                {errors.map((error, idx) => (
+                  <li className="form-errors" key={idx}>
+                    {error}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <label>
+                <textarea
+                  type="text"
+                  cols="40"
+                  rows="7"
+                  value={review}
+                  onChange={(e) => setReview(e.target.value)}
+                  required
+                  placeholder="Review"
+                />
+              </label>
+            </div>
+            <div className="star-rating">
+              {[...Array(5)].map((rating, index) => {
+                index += 1;
+                return (
+                  <button
+                    type="button"
+                    key={index}
+                    className={index <= stars ? "on" : "off"}
+                    onClick={() => setStars(index)}
+                  >
+                    <span className="star">&#9733;</span>
+                  </button>
+                );
+              })}
+            </div>
+            <div className="create-car-review-div">
+              <button className="create-car-review">Submit</button>
+            </div>
           </div>
-          <div>
-            <label>
-              <textarea
-                type="text"
-                value={review}
-                onChange={(e) => setReview(e.target.value)}
-                required
-                placeholder="Review"
-              />
-            </label>
-          </div>
-          <div className="star-rating">
-      {[...Array(5)].map((rating, index) => {
-        index += 1;
-        return (
-          <button
-            type="button"
-            key={index}
-            className={index <= stars ? "on" : "off"}
-            onClick={() => setStars(index)}
-          >
-            <span className="star">&#9733;</span>
-          </button>
-        );
-      })}
-    </div>
-          <div>
-            <button>Submit</button>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </>
   );
 };

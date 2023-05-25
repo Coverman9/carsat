@@ -25,7 +25,7 @@ const EditReviewModal = ({ _review }) => {
 
   return (
     <>
-      <div>
+      <div className="edit-review-modal">
         <form onSubmit={handleSubmit}>
           <div className="create-review-modal">
             <h2>Update Review</h2>
@@ -42,6 +42,8 @@ const EditReviewModal = ({ _review }) => {
               <label>
                 <textarea
                   type="text"
+                  cols="40"
+                  rows="7"
                   value={review}
                   onChange={(e) => setReview(e.target.value)}
                   required
@@ -64,8 +66,8 @@ const EditReviewModal = ({ _review }) => {
                 );
               })}
             </div>
-            <div className="create-car-submit-div">
-              <button className="create-car-submit">Submit</button>
+            <div className="create-car-review-div">
+              <button className="create-car-review">Submit</button>
             </div>
           </div>
         </form>

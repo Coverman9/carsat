@@ -71,8 +71,10 @@ const CarDetail = () => {
   avgRating = stars.reduce((avg, val, _, { length }) => {
     return avg + val / length;
   }, 0);
-  let hasReviewd = car?.reviews.find((review) => review.userId === sessionUser.id);
-  console.log(car?.ownerId, sessionUser.id)
+  let hasReviewd = car?.reviews.find(
+    (review) => review.userId === sessionUser.id
+  );
+
   return (
     <>
       <h1>Car Detail</h1>
@@ -134,19 +136,18 @@ const CarDetail = () => {
         </div>
       </div>
       <h2>Car Reviews:</h2>
-      {sessionUser?.id != car?.ownerId &&
-        !hasReviewd && (
-          <div className="car-detail-add-button">
-            <OpenModalButton
-              buttonText={"Add review"}
-              modalComponent={<AddReviewModal carId={carId} />}
-            />
-          </div>
-        )}
+      {sessionUser?.id != car?.ownerId && !hasReviewd && (
+        <div className="car-detail-add-button">
+          <OpenModalButton
+            buttonText={"Add review"}
+            modalComponent={<AddReviewModal carId={carId} />}
+          />
+        </div>
+      )}
       <div className="car-detail-reviews-block">
         <div>
           <img src={car?.images[0]?.image} />
-          <p>{avgRating.toFixed(1)} out of 5</p>
+          <p>★ {avgRating.toFixed(1)} out of 5</p>
         </div>
         <div>
           <h4>Customer Reviews:</h4>
@@ -158,7 +159,7 @@ const CarDetail = () => {
                     {review.user.firstName} {review.user.lastName}:{" "}
                     {review.review}
                   </p>
-                  <p>{review.stars}</p>
+                  <p>★ {review.stars}</p>
                   {sessionUser.id === review.userId && (
                     <OpenModalButton
                       buttonText={"Delete"}
@@ -172,7 +173,8 @@ const CarDetail = () => {
         </div>
       </div>
 
-      <div>
+      <div className="car-detail-testdrive">
+        <h2>Test drive this car?</h2>
         <label>
           Choose your preferred testdrive date:
           <input
@@ -191,7 +193,7 @@ const CarDetail = () => {
         </p>
       </div>
 
-      <div>
+      <div className="car-detail-testdrivers">
         {testdrivesArr.map((testdrive) => {
           return (
             <>

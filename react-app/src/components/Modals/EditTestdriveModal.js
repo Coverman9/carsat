@@ -5,7 +5,7 @@ import { useModal } from "../../context/Modal";
 import { updateTestdriveThunk } from "../../store/testdrives";
 
 const EditTestdriveModal = ({ testdrive }) => {
-    console.log(testdrive)
+  console.log(testdrive);
   const [date, setDate] = useState(testdrive.testdrive_date);
   let year = new Date().getFullYear().toString();
   let month = new Date().getMonth();
@@ -19,14 +19,14 @@ const EditTestdriveModal = ({ testdrive }) => {
     await dispatch(
       updateTestdriveThunk({
         testdriveId: testdrive.id,
-        testdrive_date: date
+        testdrive_date: date,
       })
     ).then(() => closeModal());
   };
 
   return (
     <>
-         <div>
+      <div className="edit-testdrive-modal">
         <label>
           Choose your new testdrive date:
           <input
