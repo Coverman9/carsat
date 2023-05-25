@@ -15,9 +15,13 @@ function SignupFormModal() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
-  console.log(errors);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const testEmail = /^(.+)@(.+)$/.test(email)
+    if (!testEmail || email.length < 8) {
+      setErrors(["Email is wrong"])
+      return
+    }
 		if (password === confirmPassword) {
 			let data;
       data = await dispatch(signUp(username, email, password, first_name, last_name))
@@ -101,7 +105,7 @@ function SignupFormModal() {
               />
             </label>
             <button
-              disabled={errors.length > 0}
+              
               className="signup-button"
               type="submit"
             >
