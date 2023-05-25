@@ -1,8 +1,7 @@
 .car-detail-image-container {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
-    gap: 5px;
-    height: 700px;
+    gap: 15px;
 }
 
 .car-detail-image-container img {
@@ -14,6 +13,9 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     gap: 5px;
+}
+.main-car-image {
+    max-width: 1000px;
 }
 
 .car-detail-image {

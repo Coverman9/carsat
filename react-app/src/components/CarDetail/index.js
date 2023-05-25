@@ -71,7 +71,7 @@ const CarDetail = () => {
   avgRating = stars.reduce((avg, val, _, { length }) => {
     return avg + val / length;
   }, 0);
-  let hasReviewd = car?.reviews.find(
+  let hasReviewd = reviewsArr.find(
     (review) => review.userId === sessionUser.id
   );
 
@@ -123,7 +123,7 @@ const CarDetail = () => {
       </div>
       <div className="car-detail-image-container">
         <div className="car-detail-main-image">
-          <img src={car?.images[0]?.image} />
+          <img className="main-car-image" src={car?.images[0]?.image} />
         </div>
         <div className="car-detail-other-images">
           {otherImages?.map((car) => {
