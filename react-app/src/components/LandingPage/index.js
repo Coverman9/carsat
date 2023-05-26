@@ -6,7 +6,7 @@ const LandingPage = () => {
   return (
     <>
       <div className="hero-container">
-        <h1>GET NEW CAR!</h1>
+        <h1>GET A NEW CAR!</h1>
         <p>What are you waiting for?</p>
         <div className="hero-btns">
           <button>
