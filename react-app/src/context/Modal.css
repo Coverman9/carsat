@@ -17,10 +17,14 @@
   left: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 30px;
+
 }
 
 #modal-content {
   position: absolute;
   background-color:white;
   color: #141414;
+  border-radius: 30px;
+
 }

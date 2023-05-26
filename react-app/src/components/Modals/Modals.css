@@ -52,6 +52,8 @@
     background-color: #141414;
     color: whitesmoke;
     border: 1px solid whitesmoke;
+    border-radius: 15px;
+
 }
 .delete-modal h2 {
     margin: 0;
@@ -81,6 +83,7 @@
     color: whitesmoke;
     border: 1px solid whitesmoke;
     padding: 20px;
+    border-radius: 15px;
 }
 .car-name-desc {
     display: flex;
@@ -117,6 +120,8 @@
     width: 240px;
     height: 100px;
     border: 1px solid whitesmoke;
+    border-radius: 15px;
+
 }
 .add-image-modal button {
     width: 80%;
@@ -142,6 +147,8 @@
     border: 1px solid whitesmoke;
     color: whitesmoke;
     font-weight: bold;
+    border-radius: 15px;
+
 }
 .edit-testdrive-modal input{
     margin-left: 20px;
