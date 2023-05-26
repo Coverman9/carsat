@@ -17,6 +17,8 @@ import {
 import "./CarDetail.css";
 import DeleteReviewModal from "../Modals/DeleteReviewModal";
 import AddImageModal from "../Modals/AddImageModal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CarDetail = () => {
   const [date, setDate] = useState();
@@ -43,6 +45,16 @@ const CarDetail = () => {
   }, [dispatch]);
 
   const addToWishlist = async () => {
+    toast.success("Added to wishlist", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
     await dispatch(
       createWishlistThunk({
         description: `${sessionUser.firstName} added ${car.make} to his wishlist`,
@@ -52,11 +64,31 @@ const CarDetail = () => {
   };
 
   const removeFromWishlist = async (id) => {
+    toast.error("Removed from wishlist", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
     await dispatch(deleteWishlistThunk(id));
   };
 
   const formSubmit = async (e) => {
     e.preventDefault();
+    toast.success("Added appointment for test drive", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
     await dispatch(
       createTestdriveThunk({
         testdrive_date: date,
@@ -77,6 +109,18 @@ const CarDetail = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <h1>Car Detail</h1>
       <h2>
         {car?.year} {car?.make} {car?.model}
@@ -91,7 +135,9 @@ const CarDetail = () => {
         {sessionUser.id !== car?.ownerId ? (
           <div className="jurok-wishlist">
             {wishlistsArr.length === 0 ? (
-              <div onClick={addToWishlist}>♡</div>
+              <>
+                <div onClick={addToWishlist}>♡</div>
+              </>
             ) : wishlistsArr.length &&
               wishlistsArr.find(
                 (wishlist) => wishlist.userId === sessionUser.id
