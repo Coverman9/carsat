@@ -43,7 +43,18 @@ overflow: hidden;
     overflow-wrap: break-word;
 
 }
-.each-review p{
+.each-review button {
+    padding: 4px 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    background-color: #141414;
+    color: whitesmoke;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.each-review button:hover {
+    background-color: whitesmoke;
+    color: #141414;
 }
 .car-price-and-wishlist {
     display: flex;
@@ -109,4 +120,10 @@ overflow: hidden;
     padding: 10px;
     border-radius: 10px;
     font-weight: bold;
+}
+
+.car-detail-car-make{
+    font-size: 40px;
+    margin: 0;
+    margin-left: 60px;
 }

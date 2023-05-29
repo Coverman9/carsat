@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCarDetailThunk } from "../../store/cars";
+import { carImagesThunk, getCarDetailThunk } from "../../store/cars";
 import { useParams } from "react-router-dom";
 import { createReviewThunk, getAllCarReviewsThunk } from "../../store/reviews";
 import OpenModalButton from "../OpenModalButton";
@@ -42,6 +42,7 @@ const CarDetail = () => {
     dispatch(getAllCarReviewsThunk(carId));
     dispatch(getAllCarWishlistsThunk(carId));
     dispatch(getAllCarTestdrivesThunk(carId));
+    dispatch(carImagesThunk())
   }, [dispatch]);
 
   const addToWishlist = async () => {
@@ -122,7 +123,7 @@ const CarDetail = () => {
         theme="dark"
       />
       <h1>Car Detail</h1>
-      <h2>
+      <h2 className="car-detail-car-make">
         {car?.year} {car?.make} {car?.model}
       </h2>
       <div className="car-price-and-wishlist">

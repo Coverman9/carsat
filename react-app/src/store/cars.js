@@ -164,6 +164,8 @@ const cars = (state = initialState, action) => {
       delete newState[action.carId]
       return newState
     case CAR_IMAGES:
+      newState = { ...state }
+      console.log(newState)
       console.log(action)
       return newState
     default:
