@@ -20,8 +20,22 @@ import AddImageModal from "../Modals/AddImageModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const ImageContainer = ({ car }) => {
+  const [selected, setSelected] = useState(false);
+  return (
+    <div className={selected ? "selected car-detail-image" : "car-detail-image"}>
+      <img
+        className={selected ? "selected" : ""}
+        onClick={() => setSelected(!selected)}
+        src={car.image}
+      />
+    </div>
+  );
+};
+
 const CarDetail = () => {
   const [date, setDate] = useState();
+
   let year = new Date().getFullYear().toString();
   let month = new Date().getMonth();
   let day = new Date().getDate().toString();
@@ -42,7 +56,7 @@ const CarDetail = () => {
     dispatch(getAllCarReviewsThunk(carId));
     dispatch(getAllCarWishlistsThunk(carId));
     dispatch(getAllCarTestdrivesThunk(carId));
-    dispatch(carImagesThunk())
+    dispatch(carImagesThunk());
   }, [dispatch]);
 
   const addToWishlist = async () => {
@@ -174,11 +188,7 @@ const CarDetail = () => {
         </div>
         <div className="car-detail-other-images">
           {otherImages?.map((car) => {
-            return (
-              <div className="car-detail-image">
-                <img src={car.image} />
-              </div>
-            );
+            return <ImageContainer car={car} />;
           })}
         </div>
       </div>

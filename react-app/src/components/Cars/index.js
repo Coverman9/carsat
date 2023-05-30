@@ -36,7 +36,6 @@ const Cars = () => {
         />
       </div>
       {Object.keys(cars).map((type) => {
-
         return (
           <>
             <h3>{type ? type.toUpperCase() : "OTHERS"}</h3>
@@ -45,22 +44,25 @@ const Cars = () => {
                 .filter(
                   (car) =>
                     car.make.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    car.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    car.color.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    car.model
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                    car.color
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
                     car.year.toString().includes(searchTerm)
                 )
                 .map((car) => {
                   return (
                     <>
                       <Link to={`/cars/${car.id}`}>
-                        <div className="car-image-info-div">
+                        <div className="car-image-info-div all-cars-make-model">
                           <img src={car?.images[0]?.image} />
-                          <div className="all-cars-make-model">
-                            <p>
-                              {car.make} {car.model}
-                            </p>
-                            <p className="car-price">${car.price}</p>
-                          </div>
+
+                          <p>
+                            {car.make} {car.model}
+                          </p>
+                          <p className="car-price">${car.price}</p>
                         </div>
                       </Link>
                     </>
