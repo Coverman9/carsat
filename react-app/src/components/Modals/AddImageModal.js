@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddImageModal = ({ car }) => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -27,6 +29,16 @@ const AddImageModal = ({ car }) => {
       await res.json();
       setImageLoading(false);
       closeModal();
+      toast.success("New Image Added!", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } else {
       setImageLoading(false);
       // a real app would probably use more advanced
@@ -37,6 +49,18 @@ const AddImageModal = ({ car }) => {
 
   return (
     <div className="add-image-modal">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input
           type="file"

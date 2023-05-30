@@ -67,6 +67,7 @@
     margin-bottom: 5px;
     cursor: pointer;
     background-color: rgb(236, 232, 232);
+    border-radius: 5px;
 }
 
 .yes-delete:hover{
