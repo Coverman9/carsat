@@ -43,7 +43,7 @@
 - Users are able to add the car to the wishlist using the `Add to wishlist` button
 
 #### Car detail
-<img src="https://carsat-aws.s3.us-east-2.amazonaws.com/7obw5m.gif" width="1000px">
+<img src="https://carsat-aws.s3.us-east-2.amazonaws.com/7obw5m.gif" width="800px">
 
 #### Search / Filter
 
