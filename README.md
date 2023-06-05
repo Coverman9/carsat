@@ -18,12 +18,11 @@
 ## Features
 
 #### Splash Page
+<img src="https://carsat-aws.s3.us-east-2.amazonaws.com/ezgif-2-98ffd8901c.gif" width="1000px">
 
-![db](https://carsat-aws.s3.us-east-2.amazonaws.com/ezgif-2-98ffd8901c.gif)
 
 #### Main Page
-
-![db](https://carsat-aws.s3.us-east-2.amazonaws.com/ezgif-2-f44a5ba036.gif)
+<img src="https://carsat-aws.s3.us-east-2.amazonaws.com/ezgif-2-f44a5ba036.gif" width="1000px">
 
 #### Database Schema
 
