@@ -19,11 +19,11 @@
 
 #### Splash Page
 
-![db](https://github.com/nasanov/numizmat/blob/main/docs/splash.png)
+![db](https://carsat-aws.s3.us-east-2.amazonaws.com/ezgif-2-98ffd8901c.gif)
 
 #### Main Page
 
-![db](https://github.com/nasanov/numizmat/blob/main/docs/Peek%202021-06-13%2017-48.gif)
+![db](https://carsat-aws.s3.us-east-2.amazonaws.com/ezgif-2-f44a5ba036.gif)
 
 #### Database Schema
 
