@@ -1,9 +1,9 @@
 <div align="center">
-  <h1><img src="https://media.giphy.com/media/JWKu8gbMby8De/giphy.gif" width="25px">
-  Welcome to Carsat<img src="https://media.giphy.com/media/JWKu8gbMby8De/giphy.gif" width="25px"></h1>
+  <h1><img src="https://media.giphy.com/media/JWKu8gbMby8De/giphy.gif" width="65px">
+  Welcome to Carsat <img src="https://media.giphy.com/media/lCoX64okzbQsg/giphy.gif" width="65px"></h1>
 </div>
 
-[Numizmat](https://carsat-emir.onrender.com/) is a coin tracking application, built using Python Flask, JavaScript, React, Redux and PostgresSQL.
+[Carsat](https://carsat-emir.onrender.com/) is a car retail application, built using Python Flask, JavaScript, React, Redux and PostgresSQL.
 
 ## Technologies
 
@@ -12,9 +12,8 @@
 - Flask
 - SQLAlchemy
 - PostgresQL
-- WebSockets
-- Faker
 - AWS
+
 
 ## Features
 
