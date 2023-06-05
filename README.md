@@ -22,7 +22,7 @@
 
 
 #### Main Page
-<img src="https://carsat-aws.s3.us-east-2.amazonaws.com/new.gif" width="1000px">
+<img src="./react-app/src/components/Cars/new.gif" width="1000px">
 
 #### Database Schema
 
