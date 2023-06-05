@@ -1,148 +1,94 @@
-# Flask React Project
+<div align="center">
+  <h1><img src="https://media.giphy.com/media/JWKu8gbMby8De/giphy.gif" width="25px">
+  Welcome to Carsat<img src="https://media.giphy.com/media/JWKu8gbMby8De/giphy.gif" width="25px"></h1>
+</div>
 
-This is the starter for the Flask React project.
+[Numizmat](https://carsat-emir.onrender.com/) is a coin tracking application, built using Python Flask, JavaScript, React, Redux and PostgresSQL.
 
-## Getting started
-1. Clone this repository (only this branch)
+## Technologies
 
-2. Install dependencies
+- React/Redux
+- Python
+- Flask
+- SQLAlchemy
+- PostgresQL
+- WebSockets
+- Faker
+- AWS
 
-      ```bash
-      pipenv install -r requirements.txt
-      ```
+## Features
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
+#### Splash Page
 
-4. Make sure the SQLite3 database connection URL is in the **.env** file
+![db](https://github.com/nasanov/numizmat/blob/main/docs/splash.png)
 
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention**.
+#### Main Page
 
-6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
+![db](https://github.com/nasanov/numizmat/blob/main/docs/Peek%202021-06-13%2017-48.gif)
 
-   ```bash
-   pipenv shell
-   ```
+#### Database Schema
 
-   ```bash
-   flask db upgrade
-   ```
+![db](https://github.com/nasanov/numizmat/blob/main/docs/db3.png)
 
-   ```bash
-   flask seed all
-   ```
+#### Authentication
 
-   ```bash
-   flask run
-   ```
+- Users can sign up
+- Users can log in
+- Users can log in as a demo user
+- ![db](https://github.com/nasanov/numizmat/blob/main/docs/login.png)
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+#### Coins
 
+- Users are able to create a coin using the Add coin button on the sidebar, or at the end of the coins list
+- Users are able to edit and delete the coin on the particular coin details page
+- Users can only delete coins that they own
+- Users are able to add the coin to the collection or to the wishlist using the `Add to collection` button
 
-## Deployment through Render.com
+#### Collections
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+- Users are able to create a collection using the `Add collection` button on the collections page
+- Users are able to edit and delete the collection on the collections page
+- Users can only delete collections that they own
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+![db](https://github.com/nasanov/numizmat/blob/main/docs/wishlist.png)
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+#### Search / Filter
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+- Users are able to search for the coins and collections using the search input field on the navigation bar
+- Users are able to search only for coins and collections that were created by admin user or by themselves
+- Users are able to filter by name using the input field on the sidebar
+- Users are able to filter coins by Country, name e.t.c
 
-### Part A: Configure the Start and Build Commands
+#### Import/Export to CSV
 
-Start by giving your application a name.
+- Users are able to import CSV file to add coins into the existing collection
+- Users are able to import CSV file and create new collection
 
-Leave the root directory field blank. By default, Render will run commands from
-the root directory.
+## Future Implementations
 
-Make sure the Environment field is set set to "Python 3", the Region is set to
-the location closest to you, and the Branch is set to "main".
+- Live chat so users will be able to talk to each other in one chat room
+- Filtering By multiple columns
+- Pagination for the main page
+- User Profile
+- News section with parsed news from different gov mint websites
+- Achievments for the collections
+- Add Kyrgyz and Russian languages
+- Add dark mode
+- User should be able to write notes for each coin (when and for how much he bought/exchanged/found the coin, quality, scratches/dents, etc)
 
-Next, add your Build command. This is a script that should include everything
-that needs to happen _before_ starting the server.
+## Installation
 
-For your Flask project, enter the following command into the Build field, all in
-one line:
+This project can be run by following these steps:
 
-```shell
-# build command - enter all in one line
-npm install --prefix react-app &&
-npm run build --prefix react-app &&
-pip install -r requirements.txt &&
-pip install psycopg2 &&
-flask db upgrade &&
-flask seed all
-```
+- Clone the repo into your desired folder.
+- Run `pipenv install` from the root project directory.
+- Run `npm install` from the react-app directory
+- Create a .env file in the root directory (use .env.example).
+- Run `pipenv shell` command
+- Run `flask run` command from the root directory and `npm start` from the react-app directory
 
-This script will install dependencies for the frontend, and run the build
-command in the __package.json__ file for the frontend, which builds the React
-application. Then, it will install the dependencies needed for the Python
-backend, and run the migration and seed files.
+For additional information, checkout project's [Wiki](https://github.com/nasanov/numizmat/wiki) page.
 
-Now, add your start command in the Start field:
+> Developed By: [Nurs Asanov](https://github.com/nasanov)
 
-```shell
-# start script
-gunicorn app:app
-```
-
-_If you are using websockets, use the following start command instead for increased performance:_
-
-`gunicorn --worker-class eventlet -w 1 app:app`
-
-### Part B: Add the Environment Variables
-
-Click on the "Advanced" button at the bottom of the form to configure the
-environment variables your application needs to access to run properly. In the
-development environment, you have been securing these variables in the __.env__
-file, which has been removed from source control. In this step, you will need to
-input the keys and values for the environment variables you need for production
-into the Render GUI.
-
-Click on "Add Environment Variable" to start adding all of the variables you
-need for the production environment.
-
-Add the following keys and values in the Render GUI form:
-
-- SECRET_KEY (click "Generate" to generate a secure secret for production)
-- FLASK_ENV production
-- FLASK_APP app
-- SCHEMA (your unique schema name, in snake_case)
-- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
-  https://this-application-name.onrender.com)
-
-In a new tab, navigate to your dashboard and click on your Postgres database
-instance.
-
-Add the following keys and values:
-
-- DATABASE_URL (copy value from Internal Database URL field)
-
-_Note: Add any other keys and values that may be present in your local __.env__
-file. As you work to further develop your project, you may need to add more
-environment variables to your local __.env__ file. Make sure you add these
-environment variables to the Render GUI as well for the next deployment._
-
-Next, choose "Yes" for the Auto-Deploy field. This will re-deploy your
-application every time you push to main.
-
-Now, you are finally ready to deploy! Click "Create Web Service" to deploy your
-project. The deployment process will likely take about 10-15 minutes if
-everything works as expected. You can monitor the logs to see your build and
-start commands being executed, and see any errors in the build process.
-
-When deployment is complete, open your deployed site and check to see if you
-successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page.
-
-[Render.com]: https://render.com/
-[Dashboard]: https://dashboard.render.com/
+<img src="https://media.giphy.com/media/s9kqO10sLE9smNFM8V/giphy.gif"><img src="https://media.giphy.com/media/s9kqO10sLE9smNFM8V/giphy.gif"><img src="https://media.giphy.com/media/s9kqO10sLE9smNFM8V/giphy.gif">
