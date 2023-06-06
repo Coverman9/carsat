@@ -24,6 +24,9 @@
 #### Main Page
 <img src="./react-app/src/components/Cars/new.gif" width="1000px">
 
+#### Car Detail
+
+
 #### Database Schema
 
 ![db](https://carsat-aws.s3.us-east-2.amazonaws.com/238710367-77dd3d16-18dd-4f38-9dbe-7a56dc8bb603.png)
@@ -42,7 +45,7 @@
 - Users can only delete cars that they own
 - Users are able to add the car to the wishlist using the `Add to wishlist` button
 
-#### Car detail
+#### Profile page
 <img src="https://carsat-aws.s3.us-east-2.amazonaws.com/7obw5m.gif" width="800px">
 
 #### Search / Filter
