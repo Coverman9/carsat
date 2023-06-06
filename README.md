@@ -25,7 +25,7 @@
 <img src="./react-app/src/components/Cars/new.gif" width="1000px">
 
 #### Car Detail
-
+<img src="https://carsat-aws.s3.us-east-2.amazonaws.com/cardetailgif.gif" width="1000px">
 
 #### Database Schema
 
