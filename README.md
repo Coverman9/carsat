@@ -48,12 +48,11 @@
 #### Profile page
 <img src="./react-app/src/components/Profile/profilegif.gif" width="1000px">
 
-#### Search / Filter
+#### Search
 
 - Users are able to search for the cars using the search input field on the navigation bar
 - Users are able to search only for cars that were created by admin user or by themselves
-- Users are able to filter by name using the input field on the sidebar
-- Users are able to filter coins by make, model, year and color
+- Users are able to search cars by make, model, year and color
 
 ## Future Implementations
 
