@@ -7,12 +7,22 @@ import "./Modals.css";
 const AddReviewModal = ({ carId }) => {
   const [review, setReview] = useState("");
   const [stars, setStars] = useState(0);
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   console.log(stars);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (stars === 0) {
+      return setErrors({
+        message: "Stars cannot be zero",
+      });
+    }
+    if (review.trim().length === 0) {
+      return setErrors({
+        message: "Need some review"
+      })
+    }
     await dispatch(
       createReviewThunk({
         review,
@@ -28,15 +38,7 @@ const AddReviewModal = ({ carId }) => {
         <form onSubmit={handleSubmit}>
           <div className="create-review-modal">
             <h2>Add Review:</h2>
-            <div>
-              <ul>
-                {errors.map((error, idx) => (
-                  <li className="form-errors" key={idx}>
-                    {error}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <div className="form-errors">{errors && errors.message}</div>
             <div>
               <label>
                 <textarea
